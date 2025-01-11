@@ -2,14 +2,26 @@ project:
   type: website
 
 website:
-  title: "ISSS608-dex"
+  title: "ISSS608-dex Coursework"
   navbar:
     left:
+    - text: "Hands-on Exercise"
+      menu:
+      - href: Hands-on_Ex/Hands-on_Ex00.html
+        text: "Hands-on Exercise 0"
+    - text: "In-class Exercise"
+      menu:
+      - text: "In-class Exercise 1"
+        href: In-class_Ex1.html
+    - text: "Take-home Exercise"
+      menu:
+      - text: "Take-home Exercise 1"
+        href: Take-home_Ex1.html
+    right:
       - href: index.qmd
         text: Home
       - href: about.qmd
         text: About
-    right:
       - href: contact.qmd
         text: Contact
 
