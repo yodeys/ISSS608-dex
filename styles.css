@@ -1,0 +1,43 @@
+/* css styles */
+body {
+  background: linear-gradient(to bottom, #f8f9fa, #ffffff); /* Soft gradient */
+  font-family: 'Roboto', sans-serif; /* Professional font */
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+}
+
+.navbar a {
+  color: #007bff;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.card {
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+h1, h2, h3 {
+  color: #333; /* Darker headings for contrast */
+}
+
+a {
+  color: #007bff;
+}
+
+a:hover {
+  color: #0056b3;
+}
