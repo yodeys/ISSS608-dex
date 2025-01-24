@@ -8,7 +8,7 @@
 
 <meta name="author" content="Ou Yiming">
 
-<title>Take-home Exercise 00: Layered Grammer of Graphics – ISSS608-dex Coursework</title>
+<title>Take-home Exercise 01: Layered Grammer of Graphics – ISSS608-dex Coursework</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -190,17 +190,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting started</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting started</a>
+  <ul class="collapse">
   <li><a href="#importing-data" id="toc-importing-data" class="nav-link" data-scroll-target="#importing-data">Importing Data</a></li>
-  <li><a href="#plotting-a-histogram" id="toc-plotting-a-histogram" class="nav-link" data-scroll-target="#plotting-a-histogram">Plotting a Histogram</a>
-  <ul class="collapse">
-  <li><a href="#grammer-of-graphics" id="toc-grammer-of-graphics" class="nav-link" data-scroll-target="#grammer-of-graphics">Grammer of Graphics</a></li>
-  <li><a href="#essential-grammatical-elements-in-ggplot2-data" id="toc-essential-grammatical-elements-in-ggplot2-data" class="nav-link" data-scroll-target="#essential-grammatical-elements-in-ggplot2-data">Essential Grammatical Elements in ggplot2: Data</a></li>
+  <li><a href="#plotting-a-histogram" id="toc-plotting-a-histogram" class="nav-link" data-scroll-target="#plotting-a-histogram">Plotting a Histogram</a></li>
   </ul></li>
-  <li><a href="#blank-canvas" id="toc-blank-canvas" class="nav-link" data-scroll-target="#blank-canvas">Blank Canvas</a>
+  <li><a href="#grammar-of-graphics" id="toc-grammar-of-graphics" class="nav-link" data-scroll-target="#grammar-of-graphics"><strong>Grammar of Graphics</strong></a></li>
+  <li><a href="#essential-grammatical-elements-in-ggplot2-data" id="toc-essential-grammatical-elements-in-ggplot2-data" class="nav-link" data-scroll-target="#essential-grammatical-elements-in-ggplot2-data">Essential Grammatical Elements in ggplot2: Data</a>
   <ul class="collapse">
-  <li><a href="#essential-grammatical-elements-in-ggplot2-geom" id="toc-essential-grammatical-elements-in-ggplot2-geom" class="nav-link" data-scroll-target="#essential-grammatical-elements-in-ggplot2-geom">Essential Grammatical Elements in ggplot2: geom</a></li>
+  <li><a href="#blank-canvas" id="toc-blank-canvas" class="nav-link" data-scroll-target="#blank-canvas">Blank Canvas</a></li>
   </ul></li>
+  <li><a href="#essential-grammatical-elements-in-ggplot2-geom" id="toc-essential-grammatical-elements-in-ggplot2-geom" class="nav-link" data-scroll-target="#essential-grammatical-elements-in-ggplot2-geom">Essential Grammatical Elements in ggplot2: geom</a>
+  <ul class="collapse">
   <li><a href="#plotting-a-bar-chart" id="toc-plotting-a-bar-chart" class="nav-link" data-scroll-target="#plotting-a-bar-chart">Plotting a bar chart</a></li>
   <li><a href="#plotting-a-dot-plot" id="toc-plotting-a-dot-plot" class="nav-link" data-scroll-target="#plotting-a-dot-plot">Plotting a dot plot</a></li>
   <li><a href="#plotting-a-histogram-1" id="toc-plotting-a-histogram-1" class="nav-link" data-scroll-target="#plotting-a-histogram-1">Plotting a histogram</a></li>
@@ -208,31 +209,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#plotting-a-box-plot" id="toc-plotting-a-box-plot" class="nav-link" data-scroll-target="#plotting-a-box-plot">Plotting a box plot</a></li>
   <li><a href="#plotting-a-violin-plot" id="toc-plotting-a-violin-plot" class="nav-link" data-scroll-target="#plotting-a-violin-plot">Plotting a violin plot</a></li>
   <li><a href="#plotting-a-scatter-plot" id="toc-plotting-a-scatter-plot" class="nav-link" data-scroll-target="#plotting-a-scatter-plot">Plotting a scatter plot</a></li>
-  <li><a href="#combining-different-types-of-plots" id="toc-combining-different-types-of-plots" class="nav-link" data-scroll-target="#combining-different-types-of-plots">Combining different types of plots</a>
-  <ul class="collapse">
-  <li><a href="#essential-grammatical-elements-in-ggplot2-stat" id="toc-essential-grammatical-elements-in-ggplot2-stat" class="nav-link" data-scroll-target="#essential-grammatical-elements-in-ggplot2-stat">Essential Grammatical Elements in ggplot2: stat</a></li>
+  <li><a href="#combining-different-types-of-plots" id="toc-combining-different-types-of-plots" class="nav-link" data-scroll-target="#combining-different-types-of-plots">Combining different types of plots</a></li>
   </ul></li>
+  <li><a href="#essential-grammatical-elements-in-ggplot2-stat" id="toc-essential-grammatical-elements-in-ggplot2-stat" class="nav-link" data-scroll-target="#essential-grammatical-elements-in-ggplot2-stat">Essential Grammatical Elements in ggplot2: stat</a>
+  <ul class="collapse">
   <li><a href="#basic-box-plot" id="toc-basic-box-plot" class="nav-link" data-scroll-target="#basic-box-plot">Basic box plot</a></li>
-  <li><a href="#adding-a-best-fit-curve-on-a-scatterplot" id="toc-adding-a-best-fit-curve-on-a-scatterplot" class="nav-link" data-scroll-target="#adding-a-best-fit-curve-on-a-scatterplot">Adding a best fit curve on a scatterplot</a>
-  <ul class="collapse">
-  <li><a href="#essential-grammatical-elements-in-ggplot2-facets" id="toc-essential-grammatical-elements-in-ggplot2-facets" class="nav-link" data-scroll-target="#essential-grammatical-elements-in-ggplot2-facets">Essential Grammatical Elements in ggplot2: Facets</a></li>
+  <li><a href="#adding-a-best-fit-curve-on-a-scatterplot" id="toc-adding-a-best-fit-curve-on-a-scatterplot" class="nav-link" data-scroll-target="#adding-a-best-fit-curve-on-a-scatterplot">Adding a best fit curve on a scatterplot</a></li>
   </ul></li>
+  <li><a href="#essential-grammatical-elements-in-ggplot2-facets" id="toc-essential-grammatical-elements-in-ggplot2-facets" class="nav-link" data-scroll-target="#essential-grammatical-elements-in-ggplot2-facets">Essential Grammatical Elements in ggplot2: Facets</a>
+  <ul class="collapse">
   <li><a href="#facet_wrap" id="toc-facet_wrap" class="nav-link" data-scroll-target="#facet_wrap">Facet_wrap()</a></li>
-  <li><a href="#facet_grid" id="toc-facet_grid" class="nav-link" data-scroll-target="#facet_grid">Facet_grid()</a>
-  <ul class="collapse">
-  <li><a href="#essential-grammatical-elements-in-ggplot2-coordinates" id="toc-essential-grammatical-elements-in-ggplot2-coordinates" class="nav-link" data-scroll-target="#essential-grammatical-elements-in-ggplot2-coordinates">Essential Grammatical Elements in ggplot2: Coordinates</a></li>
+  <li><a href="#facet_grid" id="toc-facet_grid" class="nav-link" data-scroll-target="#facet_grid">Facet_grid()</a></li>
   </ul></li>
+  <li><a href="#essential-grammatical-elements-in-ggplot2-coordinates" id="toc-essential-grammatical-elements-in-ggplot2-coordinates" class="nav-link" data-scroll-target="#essential-grammatical-elements-in-ggplot2-coordinates">Essential Grammatical Elements in ggplot2: Coordinates</a>
+  <ul class="collapse">
   <li><a href="#default-bar-chart" id="toc-default-bar-chart" class="nav-link" data-scroll-target="#default-bar-chart">Default bar chart</a></li>
-  <li><a href="#default-scatterplot" id="toc-default-scatterplot" class="nav-link" data-scroll-target="#default-scatterplot">Default scatterplot</a>
-  <ul class="collapse">
-  <li><a href="#essential-grammatical-elements-in-ggplot2-themes" id="toc-essential-grammatical-elements-in-ggplot2-themes" class="nav-link" data-scroll-target="#essential-grammatical-elements-in-ggplot2-themes">Essential Grammatical Elements in ggplot2: themes</a></li>
+  <li><a href="#default-scatterplot" id="toc-default-scatterplot" class="nav-link" data-scroll-target="#default-scatterplot">Default scatterplot</a></li>
   </ul></li>
+  <li><a href="#essential-grammatical-elements-in-ggplot2-themes" id="toc-essential-grammatical-elements-in-ggplot2-themes" class="nav-link" data-scroll-target="#essential-grammatical-elements-in-ggplot2-themes">Essential Grammatical Elements in ggplot2: themes</a>
+  <ul class="collapse">
   <li><a href="#gray-theme" id="toc-gray-theme" class="nav-link" data-scroll-target="#gray-theme">Gray Theme</a></li>
   <li><a href="#classic-theme" id="toc-classic-theme" class="nav-link" data-scroll-target="#classic-theme">Classic Theme</a></li>
-  <li><a href="#minimal-theme" id="toc-minimal-theme" class="nav-link" data-scroll-target="#minimal-theme">Minimal Theme</a>
-  <ul class="collapse">
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#minimal-theme" id="toc-minimal-theme" class="nav-link" data-scroll-target="#minimal-theme">Minimal Theme</a></li>
   </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -241,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Take-home Exercise 00: Layered Grammer of Graphics</h1>
+<h1 class="title">Take-home Exercise 01: Layered Grammer of Graphics</h1>
 </div>
 
 
@@ -259,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 23, 2025</p>
+      <p class="date-modified">January 24, 2025</p>
     </div>
   </div>
     
@@ -270,22 +270,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="getting-started" class="level2">
-<h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
+<section id="getting-started" class="level1">
+<h1>Getting started</h1>
 <p>Loading tidyverse onto r environment by using the code chunk below</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="importing-data" class="level1">
-<h1>Importing Data</h1>
+<section id="importing-data" class="level2">
+<h2 class="anchored" data-anchor-id="importing-data">Importing Data</h2>
 <p>Code chunk below uses read_csv() of readr to import Exam_data.csv into r environment as a tibble data.frame.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>exam_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"chap01/data/Exam_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="plotting-a-histogram" class="level1">
-<h1>Plotting a Histogram</h1>
+<section id="plotting-a-histogram" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-a-histogram">Plotting a Histogram</h2>
 <p>First, let us compare the differences between R Graphics, the core graphical functions of Base R and ggplot in plotting a simple histogram.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(exam_data<span class="sc">$</span>MATHS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -310,15 +309,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="grammer-of-graphics" class="level3">
-<h3 class="anchored" data-anchor-id="grammer-of-graphics">Grammer of Graphics</h3>
-</section>
-<section id="essential-grammatical-elements-in-ggplot2-data" class="level2">
-<h2 class="anchored" data-anchor-id="essential-grammatical-elements-in-ggplot2-data">Essential Grammatical Elements in ggplot2: Data</h2>
 </section>
 </section>
-<section id="blank-canvas" class="level1">
-<h1>Blank Canvas</h1>
+<section id="grammar-of-graphics" class="level1">
+<h1><strong>Grammar of Graphics</strong></h1>
+</section>
+<section id="essential-grammatical-elements-in-ggplot2-data" class="level1">
+<h1>Essential Grammatical Elements in ggplot2: Data</h1>
+<section id="blank-canvas" class="level2">
+<h2 class="anchored" data-anchor-id="blank-canvas">Blank Canvas</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -341,12 +340,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="essential-grammatical-elements-in-ggplot2-geom" class="level2">
-<h2 class="anchored" data-anchor-id="essential-grammatical-elements-in-ggplot2-geom">Essential Grammatical Elements in ggplot2: geom</h2>
 </section>
 </section>
-<section id="plotting-a-bar-chart" class="level1">
-<h1>Plotting a bar chart</h1>
+<section id="essential-grammatical-elements-in-ggplot2-geom" class="level1">
+<h1>Essential Grammatical Elements in ggplot2: geom</h1>
+<section id="plotting-a-bar-chart" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-a-bar-chart">Plotting a bar chart</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>RACE)) <span class="sc">+</span></span>
@@ -360,8 +359,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="plotting-a-dot-plot" class="level1">
-<h1>Plotting a dot plot</h1>
+<section id="plotting-a-dot-plot" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-a-dot-plot">Plotting a dot plot</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
@@ -391,8 +390,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="plotting-a-histogram-1" class="level1">
-<h1>Plotting a histogram</h1>
+<section id="plotting-a-histogram-1" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-a-histogram-1">Plotting a histogram</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
@@ -436,8 +435,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="plotting-a-kernel-density-estimate-plot" class="level1">
-<h1>Plotting a kernel density estimate plot</h1>
+<section id="plotting-a-kernel-density-estimate-plot" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-a-kernel-density-estimate-plot">Plotting a kernel density estimate plot</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
@@ -465,8 +464,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="plotting-a-box-plot" class="level1">
-<h1>Plotting a box plot</h1>
+<section id="plotting-a-box-plot" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-a-box-plot">Plotting a box plot</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> MATHS,       </span>
@@ -495,8 +494,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="plotting-a-violin-plot" class="level1">
-<h1>Plotting a violin plot</h1>
+<section id="plotting-a-violin-plot" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-a-violin-plot">Plotting a violin plot</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> MATHS, </span>
@@ -511,8 +510,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="plotting-a-scatter-plot" class="level1">
-<h1>Plotting a scatter plot</h1>
+<section id="plotting-a-scatter-plot" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-a-scatter-plot">Plotting a scatter plot</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS, </span>
@@ -527,8 +526,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="combining-different-types-of-plots" class="level1">
-<h1>Combining different types of plots</h1>
+<section id="combining-different-types-of-plots" class="level2">
+<h2 class="anchored" data-anchor-id="combining-different-types-of-plots">Combining different types of plots</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> MATHS, </span>
@@ -544,12 +543,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="essential-grammatical-elements-in-ggplot2-stat" class="level2">
-<h2 class="anchored" data-anchor-id="essential-grammatical-elements-in-ggplot2-stat">Essential Grammatical Elements in ggplot2: stat</h2>
 </section>
 </section>
-<section id="basic-box-plot" class="level1">
-<h1>Basic box plot</h1>
+<section id="essential-grammatical-elements-in-ggplot2-stat" class="level1">
+<h1>Essential Grammatical Elements in ggplot2: stat</h1>
+<section id="basic-box-plot" class="level2">
+<h2 class="anchored" data-anchor-id="basic-box-plot">Basic box plot</h2>
 <p>Without means</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
@@ -598,8 +597,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="adding-a-best-fit-curve-on-a-scatterplot" class="level1">
-<h1>Adding a best fit curve on a scatterplot</h1>
+<section id="adding-a-best-fit-curve-on-a-scatterplot" class="level2">
+<h2 class="anchored" data-anchor-id="adding-a-best-fit-curve-on-a-scatterplot">Adding a best fit curve on a scatterplot</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS, <span class="at">y=</span>ENGLISH)) <span class="sc">+</span></span>
@@ -629,13 +628,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="essential-grammatical-elements-in-ggplot2-facets" class="level2">
-<h2 class="anchored" data-anchor-id="essential-grammatical-elements-in-ggplot2-facets">Essential Grammatical Elements in ggplot2: Facets</h2>
+</section>
+</section>
+<section id="essential-grammatical-elements-in-ggplot2-facets" class="level1">
+<h1>Essential Grammatical Elements in ggplot2: Facets</h1>
 <p>Facetting generates small multiples or otherwise called a trellis plot</p>
-</section>
-</section>
-<section id="facet_wrap" class="level1">
-<h1>Facet_wrap()</h1>
+<section id="facet_wrap" class="level2">
+<h2 class="anchored" data-anchor-id="facet_wrap">Facet_wrap()</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS)) <span class="sc">+</span></span>
@@ -650,8 +649,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="facet_grid" class="level1">
-<h1>Facet_grid()</h1>
+<section id="facet_grid" class="level2">
+<h2 class="anchored" data-anchor-id="facet_grid">Facet_grid()</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS)) <span class="sc">+</span></span>
@@ -665,12 +664,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="essential-grammatical-elements-in-ggplot2-coordinates" class="level2">
-<h2 class="anchored" data-anchor-id="essential-grammatical-elements-in-ggplot2-coordinates">Essential Grammatical Elements in ggplot2: Coordinates</h2>
 </section>
 </section>
-<section id="default-bar-chart" class="level1">
-<h1>Default bar chart</h1>
+<section id="essential-grammatical-elements-in-ggplot2-coordinates" class="level1">
+<h1>Essential Grammatical Elements in ggplot2: Coordinates</h1>
+<section id="default-bar-chart" class="level2">
+<h2 class="anchored" data-anchor-id="default-bar-chart">Default bar chart</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>RACE)) <span class="sc">+</span></span>
@@ -698,8 +697,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="default-scatterplot" class="level1">
-<h1>Default scatterplot</h1>
+<section id="default-scatterplot" class="level2">
+<h2 class="anchored" data-anchor-id="default-scatterplot">Default scatterplot</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS, <span class="at">y=</span>ENGLISH)) <span class="sc">+</span></span>
@@ -730,12 +729,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="essential-grammatical-elements-in-ggplot2-themes" class="level2">
-<h2 class="anchored" data-anchor-id="essential-grammatical-elements-in-ggplot2-themes">Essential Grammatical Elements in ggplot2: themes</h2>
 </section>
 </section>
-<section id="gray-theme" class="level1">
-<h1>Gray Theme</h1>
+<section id="essential-grammatical-elements-in-ggplot2-themes" class="level1">
+<h1>Essential Grammatical Elements in ggplot2: themes</h1>
+<section id="gray-theme" class="level2">
+<h2 class="anchored" data-anchor-id="gray-theme">Gray Theme</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>RACE)) <span class="sc">+</span></span>
@@ -751,8 +750,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="classic-theme" class="level1">
-<h1>Classic Theme</h1>
+<section id="classic-theme" class="level2">
+<h2 class="anchored" data-anchor-id="classic-theme">Classic Theme</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>RACE)) <span class="sc">+</span></span>
@@ -768,8 +767,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="minimal-theme" class="level1">
-<h1>Minimal Theme</h1>
+<section id="minimal-theme" class="level2">
+<h2 class="anchored" data-anchor-id="minimal-theme">Minimal Theme</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>RACE)) <span class="sc">+</span></span>
@@ -784,14 +783,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="references" class="level3">
-<h3 class="anchored" data-anchor-id="references">References</h3>
+</section>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
 <ul>
 <li>Prof Kam Tin Seong (2025) https://r4va.netlify.app/chap01. Online version</li>
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

@@ -65,9 +65,9 @@
   {
     "objectID": "Take-home_Ex/Take-home_Ex01.html",
     "href": "Take-home_Ex/Take-home_Ex01.html",
-    "title": "Take-home Exercise 00: Layered Grammer of Graphics",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
     "section": "",
-    "text": "Loading tidyverse onto r environment by using the code chunk below\n\npacman::p_load(tidyverse)"
+    "text": "Loading tidyverse onto r environment by using the code chunk below\n\npacman::p_load(tidyverse)\n\n\n\nCode chunk below uses read_csv() of readr to import Exam_data.csv into r environment as a tibble data.frame.\n\nexam_data &lt;- read_csv(\"chap01/data/Exam_data.csv\")\n\n\n\n\nFirst, let us compare the differences between R Graphics, the core graphical functions of Base R and ggplot in plotting a simple histogram.\n\nhist(exam_data$MATHS)\n\n\n\n\n\n\n\nggplot(data=exam_data, aes(x = MATHS)) +\n  geom_histogram(bins=10, \n                 boundary = 100,\n                 color=\"black\", \n                 fill=\"grey\") +\n  ggtitle(\"Distribution of Maths scores\")"
   },
   {
     "objectID": "Take-home_Ex/Take-home_Ex01.html#getting-started",
@@ -79,9 +79,9 @@
   {
     "objectID": "Take-home_Ex/Take-home_Ex01.html#importing-data",
     "href": "Take-home_Ex/Take-home_Ex01.html#importing-data",
-    "title": "Take-home Exercise 00: Layered Grammer of Graphics",
-    "section": "Importing Data",
-    "text": "Importing Data\nCode chunk below uses read_csv() of readr to import Exam_data.csv into r environment as a tibble data.frame.\n\nexam_data &lt;- read_csv(\"chap01/data/Exam_data.csv\")\n\n#Plotting a Histogram\nFirst, let us compare how R Graphics, the core graphical functions of Base R and ggplot plot a simple histogram.\n\nhist(exam_data$MATHS)\n\n\n\n\n\n\n\nggplot(data=exam_data, aes(x = MATHS)) +\n  geom_histogram(bins=10, \n                 boundary = 100,\n                 color=\"black\", \n                 fill=\"grey\") +\n  ggtitle(\"Distribution of Maths scores\")"
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "",
+    "text": "Code chunk below uses read_csv() of readr to import Exam_data.csv into r environment as a tibble data.frame.\n\nexam_data &lt;- read_csv(\"chap01/data/Exam_data.csv\")"
   },
   {
     "objectID": "Take-home_Ex/Take-home_Ex01.html#essential-grammatical-elements-in-ggplot2-data",
@@ -229,5 +229,138 @@
     "title": "Take-home Exercise 02: Beyond ggplot2 Fundamentals",
     "section": "Creating a composite figure using patchwork and ggtheme",
     "text": "Creating a composite figure using patchwork and ggtheme\n\npatchwork &lt;- (p1 / p2) | p3\npatchwork & theme_economist()"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#plotting-a-histogram",
+    "href": "Take-home_Ex/Take-home_Ex01.html#plotting-a-histogram",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "",
+    "text": "First, let us compare the differences between R Graphics, the core graphical functions of Base R and ggplot in plotting a simple histogram.\n\nhist(exam_data$MATHS)\n\n\n\n\n\n\n\nggplot(data=exam_data, aes(x = MATHS)) +\n  geom_histogram(bins=10, \n                 boundary = 100,\n                 color=\"black\", \n                 fill=\"grey\") +\n  ggtitle(\"Distribution of Maths scores\")"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#blank-canvas",
+    "href": "Take-home_Ex/Take-home_Ex01.html#blank-canvas",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Blank Canvas",
+    "text": "Blank Canvas\n\nggplot(data=exam_data)\n\n\n\n\n\n\n\n\nIncluding the x-axis and the axis’s label\n\nggplot(data=exam_data, \n       aes(x= MATHS))"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#plotting-a-bar-chart",
+    "href": "Take-home_Ex/Take-home_Ex01.html#plotting-a-bar-chart",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Plotting a bar chart",
+    "text": "Plotting a bar chart\n\nggplot(data=exam_data, \n       aes(x=RACE)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#plotting-a-dot-plot",
+    "href": "Take-home_Ex/Take-home_Ex01.html#plotting-a-dot-plot",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Plotting a dot plot",
+    "text": "Plotting a dot plot\n\nggplot(data=exam_data, \n       aes(x = MATHS)) +\n  geom_dotplot(dotsize = 0.5)\n\n\n\n\n\n\n\n\nImprove the visual by removing the y-axis and changing the binwidth\n\nggplot(data=exam_data, \n       aes(x = MATHS)) +\n  geom_dotplot(binwidth=2.5,         \n               dotsize = 0.5) +      \n  scale_y_continuous(NULL,           \n                     breaks = NULL)"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#plotting-a-histogram-1",
+    "href": "Take-home_Ex/Take-home_Ex01.html#plotting-a-histogram-1",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Plotting a histogram",
+    "text": "Plotting a histogram\n\nggplot(data=exam_data, \n       aes(x = MATHS)) +\n  geom_histogram() \n\n\n\n\n\n\n\n\nModifying the histogram\n\nggplot(data=exam_data, \n       aes(x= MATHS)) +\n  geom_histogram(bins=20,            \n                 color=\"black\",      \n                 fill=\"light blue\")  \n\n\n\n\n\n\n\n\nProviding additional info by sub grouping the visual\n\nggplot(data=exam_data, \n       aes(x= MATHS, \n           fill = GENDER)) +\n  geom_histogram(bins=20, \n                 color=\"grey30\")"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#plotting-a-kernel-density-estimate-plot",
+    "href": "Take-home_Ex/Take-home_Ex01.html#plotting-a-kernel-density-estimate-plot",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Plotting a kernel density estimate plot",
+    "text": "Plotting a kernel density estimate plot\n\nggplot(data=exam_data, \n       aes(x = MATHS)) +\n  geom_density() \n\n\n\n\n\n\n\n\nProviding additional info by sub grouping the visual\n\nggplot(data=exam_data, \n       aes(x = MATHS, \n           colour = GENDER)) +\n  geom_density()"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#plotting-a-box-plot",
+    "href": "Take-home_Ex/Take-home_Ex01.html#plotting-a-box-plot",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Plotting a box plot",
+    "text": "Plotting a box plot\n\nggplot(data=exam_data, \n       aes(y = MATHS,       \n           x= GENDER)) +    \n  geom_boxplot()\n\n\n\n\n\n\n\n\nImproving the visual by converting the boxplot into a notched plot\n\nggplot(data=exam_data, \n       aes(y = MATHS, \n           x= GENDER)) +\n  geom_boxplot(notch=TRUE)"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#plotting-a-violin-plot",
+    "href": "Take-home_Ex/Take-home_Ex01.html#plotting-a-violin-plot",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Plotting a violin plot",
+    "text": "Plotting a violin plot\n\nggplot(data=exam_data, \n       aes(y = MATHS, \n           x= GENDER)) +\n  geom_violin()"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#plotting-a-scatter-plot",
+    "href": "Take-home_Ex/Take-home_Ex01.html#plotting-a-scatter-plot",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Plotting a scatter plot",
+    "text": "Plotting a scatter plot\n\nggplot(data=exam_data, \n       aes(x= MATHS, \n           y=ENGLISH)) +\n  geom_point()"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#combining-different-types-of-plots",
+    "href": "Take-home_Ex/Take-home_Ex01.html#combining-different-types-of-plots",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Combining different types of plots",
+    "text": "Combining different types of plots\n\nggplot(data=exam_data, \n       aes(y = MATHS, \n           x= GENDER)) +\n  geom_boxplot() +                    \n  geom_point(position=\"jitter\", \n             size = 0.5)"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#basic-box-plot",
+    "href": "Take-home_Ex/Take-home_Ex01.html#basic-box-plot",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Basic box plot",
+    "text": "Basic box plot\nWithout means\n\nggplot(data=exam_data, \n       aes(y = MATHS, x= GENDER)) +\n  geom_boxplot()\n\n\n\n\n\n\n\n\nWith means (Method 1)\n\nggplot(data=exam_data, \n       aes(y = MATHS, x= GENDER)) +\n  geom_boxplot() +\n  stat_summary(geom = \"point\",       \n               fun = \"mean\",         \n               colour =\"red\",        \n               size=4)       \n\n\n\n\n\n\n\n\nWith means (Method 2)\n\nggplot(data=exam_data, \n       aes(y = MATHS, x= GENDER)) +\n  geom_boxplot() +\n  geom_point(stat=\"summary\",        \n             fun=\"mean\",           \n             colour=\"red\",          \n             size=4)"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#adding-a-best-fit-curve-on-a-scatterplot",
+    "href": "Take-home_Ex/Take-home_Ex01.html#adding-a-best-fit-curve-on-a-scatterplot",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Adding a best fit curve on a scatterplot",
+    "text": "Adding a best fit curve on a scatterplot\n\nggplot(data=exam_data, \n       aes(x= MATHS, y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(linewidth=0.5)\n\n\n\n\n\n\n\n\nUtilizing of another smoothing method\n\nggplot(data=exam_data, \n       aes(x= MATHS, \n           y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              linewidth=0.5)"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#facet_wrap",
+    "href": "Take-home_Ex/Take-home_Ex01.html#facet_wrap",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Facet_wrap()",
+    "text": "Facet_wrap()\n\nggplot(data=exam_data, \n       aes(x= MATHS)) +\n  geom_histogram(bins=20) +\n    facet_wrap(~ CLASS)"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#facet_grid",
+    "href": "Take-home_Ex/Take-home_Ex01.html#facet_grid",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Facet_grid()",
+    "text": "Facet_grid()\n\nggplot(data=exam_data, \n       aes(x= MATHS)) +\n  geom_histogram(bins=20) +\n    facet_grid(~ CLASS)"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#default-bar-chart",
+    "href": "Take-home_Ex/Take-home_Ex01.html#default-bar-chart",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Default bar chart",
+    "text": "Default bar chart\n\nggplot(data=exam_data, \n       aes(x=RACE)) +\n  geom_bar()\n\n\n\n\n\n\n\n\nWith coord_flip()\n\nggplot(data=exam_data, \n       aes(x=RACE)) +\n  geom_bar() +\n  coord_flip()"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#default-scatterplot",
+    "href": "Take-home_Ex/Take-home_Ex01.html#default-scatterplot",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Default scatterplot",
+    "text": "Default scatterplot\n\nggplot(data=exam_data, \n       aes(x= MATHS, y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, size=0.5)\n\n\n\n\n\n\n\n\nWith the y-axis and x-axis being fixed from 0-100\n\nggplot(data=exam_data, \n       aes(x= MATHS, y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              size=0.5) +  \n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100))"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#gray-theme",
+    "href": "Take-home_Ex/Take-home_Ex01.html#gray-theme",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Gray Theme",
+    "text": "Gray Theme\n\nggplot(data=exam_data, \n       aes(x=RACE)) +\n  geom_bar() +\n  coord_flip() +\n  theme_gray()"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#classic-theme",
+    "href": "Take-home_Ex/Take-home_Ex01.html#classic-theme",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Classic Theme",
+    "text": "Classic Theme\n\nggplot(data=exam_data, \n       aes(x=RACE)) +\n  geom_bar() +\n  coord_flip() +\n  theme_classic()"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex01.html#minimal-theme",
+    "href": "Take-home_Ex/Take-home_Ex01.html#minimal-theme",
+    "title": "Take-home Exercise 01: Layered Grammer of Graphics",
+    "section": "Minimal Theme",
+    "text": "Minimal Theme\n\nggplot(data=exam_data, \n       aes(x=RACE)) +\n  geom_bar() +\n  coord_flip() +\n  theme_minimal()"
   }
 ]
