@@ -191,28 +191,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#loading-required-libraries" id="toc-loading-required-libraries" class="nav-link active" data-scroll-target="#loading-required-libraries">Loading Required Libraries</a></li>
-  <li><a href="#importing-data" id="toc-importing-data" class="nav-link" data-scroll-target="#importing-data">Importing Data</a>
+  <li><a href="#importing-data" id="toc-importing-data" class="nav-link" data-scroll-target="#importing-data">Importing Data</a></li>
+  <li><a href="#beyond-ggplot2-ggrepel" id="toc-beyond-ggplot2-ggrepel" class="nav-link" data-scroll-target="#beyond-ggplot2-ggrepel">Beyond ggplot2: ggrepel</a>
   <ul class="collapse">
-  <li><a href="#beyond-ggplot2-ggrepel" id="toc-beyond-ggplot2-ggrepel" class="nav-link" data-scroll-target="#beyond-ggplot2-ggrepel">Beyond ggplot2: ggrepel</a></li>
-  </ul></li>
   <li><a href="#without-ggrepel" id="toc-without-ggrepel" class="nav-link" data-scroll-target="#without-ggrepel">Without ggrepel</a></li>
-  <li><a href="#with-ggrepel" id="toc-with-ggrepel" class="nav-link" data-scroll-target="#with-ggrepel">With ggrepel</a>
-  <ul class="collapse">
-  <li><a href="#beyond-ggplot2-themes" id="toc-beyond-ggplot2-themes" class="nav-link" data-scroll-target="#beyond-ggplot2-themes">Beyond ggplot2 Themes</a></li>
+  <li><a href="#with-ggrepel" id="toc-with-ggrepel" class="nav-link" data-scroll-target="#with-ggrepel">With ggrepel</a></li>
   </ul></li>
+  <li><a href="#beyond-ggplot2-themes" id="toc-beyond-ggplot2-themes" class="nav-link" data-scroll-target="#beyond-ggplot2-themes">Beyond ggplot2 Themes</a>
+  <ul class="collapse">
   <li><a href="#gray-theme" id="toc-gray-theme" class="nav-link" data-scroll-target="#gray-theme">Gray Theme</a></li>
-  <li><a href="#economist-theme" id="toc-economist-theme" class="nav-link" data-scroll-target="#economist-theme">Economist Theme</a>
-  <ul class="collapse">
-  <li><a href="#working-with-hrbthems" id="toc-working-with-hrbthems" class="nav-link" data-scroll-target="#working-with-hrbthems">Working with hrbthems</a></li>
-  <li><a href="#beyond-single-graph" id="toc-beyond-single-graph" class="nav-link" data-scroll-target="#beyond-single-graph">Beyond Single Graph</a></li>
+  <li><a href="#economist-theme" id="toc-economist-theme" class="nav-link" data-scroll-target="#economist-theme">Economist Theme</a></li>
   </ul></li>
+  <li><a href="#working-with-hrbthems" id="toc-working-with-hrbthems" class="nav-link" data-scroll-target="#working-with-hrbthems">Working with hrbthems</a></li>
+  <li><a href="#beyond-single-graph" id="toc-beyond-single-graph" class="nav-link" data-scroll-target="#beyond-single-graph">Beyond Single Graph</a>
+  <ul class="collapse">
   <li><a href="#normal-plots" id="toc-normal-plots" class="nav-link" data-scroll-target="#normal-plots">Normal Plots</a></li>
   <li><a href="#creating-composite-graphics-with-patchwork" id="toc-creating-composite-graphics-with-patchwork" class="nav-link" data-scroll-target="#creating-composite-graphics-with-patchwork">Creating Composite Graphics with patchwork</a></li>
   <li><a href="#creating-composite-graphics-with-inset" id="toc-creating-composite-graphics-with-inset" class="nav-link" data-scroll-target="#creating-composite-graphics-with-inset">Creating Composite Graphics with Inset</a></li>
-  <li><a href="#creating-a-composite-figure-using-patchwork-and-ggtheme" id="toc-creating-a-composite-figure-using-patchwork-and-ggtheme" class="nav-link" data-scroll-target="#creating-a-composite-figure-using-patchwork-and-ggtheme">Creating a composite figure using patchwork and ggtheme</a>
-  <ul class="collapse">
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#creating-a-composite-figure-using-patchwork-and-ggtheme" id="toc-creating-a-composite-figure-using-patchwork-and-ggtheme" class="nav-link" data-scroll-target="#creating-a-composite-figure-using-patchwork-and-ggtheme">Creating a composite figure using patchwork and ggtheme</a></li>
   </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -250,8 +248,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="loading-required-libraries" class="level2">
-<h2 class="anchored" data-anchor-id="loading-required-libraries">Loading Required Libraries</h2>
+<section id="loading-required-libraries" class="level1">
+<h1>Loading Required Libraries</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(ggrepel, patchwork, </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               ggthemes, hrbrthemes,</span>
@@ -263,12 +261,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>exam_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"chap02/data/Exam_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="beyond-ggplot2-ggrepel" class="level2">
-<h2 class="anchored" data-anchor-id="beyond-ggplot2-ggrepel">Beyond ggplot2: ggrepel</h2>
 </section>
-</section>
-<section id="without-ggrepel" class="level1">
-<h1>Without ggrepel</h1>
+<section id="beyond-ggplot2-ggrepel" class="level1">
+<h1>Beyond ggplot2: ggrepel</h1>
+<section id="without-ggrepel" class="level2">
+<h2 class="anchored" data-anchor-id="without-ggrepel">Without ggrepel</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS, </span>
@@ -291,8 +288,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="with-ggrepel" class="level1">
-<h1>With ggrepel</h1>
+<section id="with-ggrepel" class="level2">
+<h2 class="anchored" data-anchor-id="with-ggrepel">With ggrepel</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span> MATHS, </span>
@@ -313,12 +310,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="beyond-ggplot2-themes" class="level2">
-<h2 class="anchored" data-anchor-id="beyond-ggplot2-themes">Beyond ggplot2 Themes</h2>
 </section>
 </section>
-<section id="gray-theme" class="level1">
-<h1>Gray Theme</h1>
+<section id="beyond-ggplot2-themes" class="level1">
+<h1>Beyond ggplot2 Themes</h1>
+<section id="gray-theme" class="level2">
+<h2 class="anchored" data-anchor-id="gray-theme">Gray Theme</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
@@ -337,8 +334,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="economist-theme" class="level1">
-<h1>Economist Theme</h1>
+<section id="economist-theme" class="level2">
+<h2 class="anchored" data-anchor-id="economist-theme">Economist Theme</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
@@ -356,8 +353,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="working-with-hrbthems" class="level2">
-<h2 class="anchored" data-anchor-id="working-with-hrbthems">Working with hrbthems</h2>
+</section>
+</section>
+<section id="working-with-hrbthems" class="level1">
+<h1>Working with hrbthems</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
@@ -395,12 +394,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="beyond-single-graph" class="level2">
-<h2 class="anchored" data-anchor-id="beyond-single-graph">Beyond Single Graph</h2>
-</section>
-</section>
-<section id="normal-plots" class="level1">
-<h1>Normal Plots</h1>
+<section id="beyond-single-graph" class="level1">
+<h1>Beyond Single Graph</h1>
+<section id="normal-plots" class="level2">
+<h2 class="anchored" data-anchor-id="normal-plots">Normal Plots</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
@@ -433,8 +430,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"English scores versus Maths scores for Primary 3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="creating-composite-graphics-with-patchwork" class="level1">
-<h1>Creating Composite Graphics with patchwork</h1>
+<section id="creating-composite-graphics-with-patchwork" class="level2">
+<h2 class="anchored" data-anchor-id="creating-composite-graphics-with-patchwork">Creating Composite Graphics with patchwork</h2>
 <p>Side-by-side</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -470,8 +467,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="creating-composite-graphics-with-inset" class="level1">
-<h1>Creating Composite Graphics with Inset</h1>
+<section id="creating-composite-graphics-with-inset" class="level2">
+<h2 class="anchored" data-anchor-id="creating-composite-graphics-with-inset">Creating Composite Graphics with Inset</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="sc">+</span> <span class="fu">inset_element</span>(p2, </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">left =</span> <span class="fl">0.02</span>, </span>
@@ -487,8 +484,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="creating-a-composite-figure-using-patchwork-and-ggtheme" class="level1">
-<h1>Creating a composite figure using patchwork and ggtheme</h1>
+<section id="creating-a-composite-figure-using-patchwork-and-ggtheme" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-composite-figure-using-patchwork-and-ggtheme">Creating a composite figure using patchwork and ggtheme</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>patchwork <span class="ot">&lt;-</span> (p1 <span class="sc">/</span> p2) <span class="sc">|</span> p3</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>patchwork <span class="sc">&amp;</span> <span class="fu">theme_economist</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -500,14 +497,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
+</section>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
 <ul>
 <li>Prof Kam Tin Seong (2025) https://r4va.netlify.app/chap02. Online version</li>
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

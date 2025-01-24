@@ -173,5 +173,61 @@
     "title": "Take-home Exercise 02: Beyond ggplot2 Fundamentals",
     "section": "References",
     "text": "References\n\nProf Kam Tin Seong (2025) https://r4va.netlify.app/chap02. Online version"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex02.html#without-ggrepel",
+    "href": "Take-home_Ex/Take-home_Ex02.html#without-ggrepel",
+    "title": "Take-home Exercise 02: Beyond ggplot2 Fundamentals",
+    "section": "Without ggrepel",
+    "text": "Without ggrepel\n\nggplot(data=exam_data, \n       aes(x= MATHS, \n           y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              size=0.5) +  \n  geom_label(aes(label = ID), \n             hjust = .5, \n             vjust = -.5) +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  ggtitle(\"English scores versus Maths scores for Primary 3\")"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex02.html#with-ggrepel",
+    "href": "Take-home_Ex/Take-home_Ex02.html#with-ggrepel",
+    "title": "Take-home Exercise 02: Beyond ggplot2 Fundamentals",
+    "section": "With ggrepel",
+    "text": "With ggrepel\n\nggplot(data=exam_data, \n       aes(x= MATHS, \n           y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              size=0.5) +  \n  geom_label_repel(aes(label = ID), \n                   fontface = \"bold\") +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  ggtitle(\"English scores versus Maths scores for Primary 3\")"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex02.html#gray-theme",
+    "href": "Take-home_Ex/Take-home_Ex02.html#gray-theme",
+    "title": "Take-home Exercise 02: Beyond ggplot2 Fundamentals",
+    "section": "Gray Theme",
+    "text": "Gray Theme\n\nggplot(data=exam_data, \n             aes(x = MATHS)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"grey90\") +\n  theme_gray() +\n  ggtitle(\"Distribution of Maths scores\")"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex02.html#economist-theme",
+    "href": "Take-home_Ex/Take-home_Ex02.html#economist-theme",
+    "title": "Take-home Exercise 02: Beyond ggplot2 Fundamentals",
+    "section": "Economist Theme",
+    "text": "Economist Theme\n\nggplot(data=exam_data, \n             aes(x = MATHS)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"grey90\") +\n  ggtitle(\"Distribution of Maths scores\") +\n  theme_economist()"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex02.html#normal-plots",
+    "href": "Take-home_Ex/Take-home_Ex02.html#normal-plots",
+    "title": "Take-home Exercise 02: Beyond ggplot2 Fundamentals",
+    "section": "Normal Plots",
+    "text": "Normal Plots\n\np1 &lt;- ggplot(data=exam_data, \n             aes(x = MATHS)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"grey90\") + \n  coord_cartesian(xlim=c(0,100)) +\n  ggtitle(\"Distribution of Maths scores\")\n\n\np2 &lt;- ggplot(data=exam_data, \n             aes(x = ENGLISH)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"grey90\") +\n  coord_cartesian(xlim=c(0,100)) +\n  ggtitle(\"Distribution of English scores\")\n\n\np3 &lt;- ggplot(data=exam_data, \n             aes(x= MATHS, \n                 y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              size=0.5) +  \n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  ggtitle(\"English scores versus Maths scores for Primary 3\")"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex02.html#creating-composite-graphics-with-patchwork",
+    "href": "Take-home_Ex/Take-home_Ex02.html#creating-composite-graphics-with-patchwork",
+    "title": "Take-home Exercise 02: Beyond ggplot2 Fundamentals",
+    "section": "Creating Composite Graphics with patchwork",
+    "text": "Creating Composite Graphics with patchwork\nSide-by-side\n\np1 + p2\n\n\n\n\n\n\n\n\n“/” operator to stack two ggplot2 graphs, “|” operator to place the plots beside each other, “()” operator the define the sequence of the plotting.\n\n(p1 / p2) | p3\n\n\n\n\n\n\n\n\nAuto-tagging\n\n((p1 / p2) | p3) + \n  plot_annotation(tag_levels = 'I')"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex02.html#creating-composite-graphics-with-inset",
+    "href": "Take-home_Ex/Take-home_Ex02.html#creating-composite-graphics-with-inset",
+    "title": "Take-home Exercise 02: Beyond ggplot2 Fundamentals",
+    "section": "Creating Composite Graphics with Inset",
+    "text": "Creating Composite Graphics with Inset\n\np3 + inset_element(p2, \n                   left = 0.02, \n                   bottom = 0.7, \n                   right = 0.5, \n                   top = 1)"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex02.html#creating-a-composite-figure-using-patchwork-and-ggtheme",
+    "href": "Take-home_Ex/Take-home_Ex02.html#creating-a-composite-figure-using-patchwork-and-ggtheme",
+    "title": "Take-home Exercise 02: Beyond ggplot2 Fundamentals",
+    "section": "Creating a composite figure using patchwork and ggtheme",
+    "text": "Creating a composite figure using patchwork and ggtheme\n\npatchwork &lt;- (p1 / p2) | p3\npatchwork & theme_economist()"
   }
 ]
