@@ -90,4 +90,4 @@ realis2019_end <- realis2019 %>%
 realis2019_end
 ```
 
-Notes: eval (display the code but does not run it), echo (runs the code but does not display it), %>% (used to combine multiple functions together)
+Notes: eval (display the code but does not run it), echo (runs the code but does not display it), %\>% (used to combine multiple functions together)
