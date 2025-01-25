@@ -16,11 +16,13 @@ pacman::p_load(ggrepel, patchwork,
                ggthemes, hrbrthemes,
                tidyverse) 
 ```
+
 # Importing Data
 
 ```{r}
 exam_data <- read_csv("chap02/data/Exam_data.csv")
 ```
+
 # Beyond ggplot2: ggrepel
 
 ## Without ggrepel
@@ -39,6 +41,7 @@ ggplot(data=exam_data,
                   ylim=c(0,100)) +
   ggtitle("English scores versus Maths scores for Primary 3")
 ```
+
 ## With ggrepel
 
 ```{r}
@@ -54,6 +57,7 @@ ggplot(data=exam_data,
                   ylim=c(0,100)) +
   ggtitle("English scores versus Maths scores for Primary 3")
 ```
+
 # Beyond ggplot2 Themes
 
 ## Gray Theme
@@ -68,6 +72,7 @@ ggplot(data=exam_data,
   theme_gray() +
   ggtitle("Distribution of Maths scores") 
 ```
+
 ## Economist Theme
 
 ```{r}
@@ -80,6 +85,7 @@ ggplot(data=exam_data,
   ggtitle("Distribution of Maths scores") +
   theme_economist()
 ```
+
 # Working with hrbthems
 
 ```{r}
@@ -92,6 +98,7 @@ ggplot(data=exam_data,
   ggtitle("Distribution of Maths scores") +
   theme_ipsum()
 ```
+
 ```{r}
 ggplot(data=exam_data, 
              aes(x = MATHS)) +
@@ -104,6 +111,7 @@ ggplot(data=exam_data,
               base_size = 15,
               grid = "Y")
 ```
+
 # Beyond Single Graph
 
 ## Normal Plots
@@ -149,9 +157,8 @@ Side-by-side
 ```{r}
 p1 + p2
 ```
-“/” operator to stack two ggplot2 graphs,
-“|” operator to place the plots beside each other,
-“()” operator the define the sequence of the plotting.
+
+“/” operator to stack two ggplot2 graphs, “\|” operator to place the plots beside each other, “()” operator the define the sequence of the plotting.
 
 ```{r}
 (p1 / p2) | p3
@@ -183,5 +190,4 @@ patchwork & theme_economist()
 
 # References
 
-- Prof Kam Tin Seong (2025) https://r4va.netlify.app/chap02. Online version
-
+-   Prof Kam Tin Seong (2025) https://r4va.netlify.app/chap02. Online version
