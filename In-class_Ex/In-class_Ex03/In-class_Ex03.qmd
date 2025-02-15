@@ -1,0 +1,19 @@
+---
+title: "In-class Exercise 04"
+author: "Ou Yiming"
+date-modified: "last-modified"
+execute:
+  echo: true
+  eval: true
+  warning: false
+  freeze: true
+---
+
+# Exploring Tableau's Functionaly
+
+
+
+
+# References
+
+-   Prof Kam Tin Seong (2025) Class. Physical.

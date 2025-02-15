@@ -1,0 +1,339 @@
+---
+title: "In-class Exercise 05: Visual Analytics for Building Better Explanatory Models"
+author: "Ou Yiming"
+date-modified: "last-modified"
+format: 
+  html:
+    code-tools: true
+    code-overflow: wrap
+execute:
+  echo: true
+  eval: true
+  warning: false
+---
+
+# Getting Started
+
+Load the required packages.
+
+::: callout-tip
+## Tip for loading packages
+
+`p_load` will first check if you have the package installed; otherwise, it will install it. Next, it will load the installed packages. Preferably, install the packages via `Tools > Install Packages` in RStudio before running `p_load`.
+:::
+
+This section loads necessary libraries for data manipulation, visualization, exploratory data analysis, and model performance evaluation.
+
+```{r}
+pacman::p_load(tidyverse, readxl, SmartEDA, easystats, gtsummary, ggstatsplot)
+```
+
+## Importing Data
+
+This code imports the dataset from an Excel file.
+
+```{r}
+car_resale <- read_xls("data/ToyotaCorolla.xls", sheet = "data")
+```
+
+### Glimpse of the dataset
+
+Displays the structure of the dataset including column names, data types, and values.
+
+::: callout-note
+This provides a quick overview of the dataset structure.
+:::
+
+::: panel-tabset
+## Code
+
+```{r}
+#| eval: false
+glimpse(car_resale)
+```
+
+## Output
+
+```{r}
+#| echo: false
+glimpse(car_resale)
+```
+:::
+
+### Listing the dataset
+
+Lists all objects within the dataset.
+
+::: callout-note
+This helps to see the elements stored in the dataset.
+:::
+
+::: panel-tabset
+## Code
+
+```{r}
+#| eval: false
+list(car_resale)
+```
+
+## Output
+
+```{r}
+#| echo: false
+list(car_resale)
+```
+:::
+
+### Summary of the dataset
+
+Generates summary statistics for each column in the dataset.
+
+::: callout-note
+Summary provides key statistical insights into each variable.
+:::
+
+::: panel-tabset
+## Code
+
+```{r}
+#| eval: false
+summary(car_resale)
+```
+
+## Output
+
+```{r}
+#| echo: false
+summary(car_resale)
+```
+:::
+
+### Overview of the data using SmartEDA
+
+Displays an overview and structure of the dataset using SmartEDA.
+
+::: callout-note
+**Type 1** = Overview of Data \| **Type 2** = Structure of Data
+:::
+
+::: panel-tabset
+## Code
+
+```{r}
+#| eval: false
+car_resale %>% ExpData(type=1)
+```
+
+## Output
+
+```{r}
+#| echo: false
+car_resale %>% ExpData(type=1)
+```
+:::
+
+::: panel-tabset
+## Code
+
+```{r}
+#| eval: false
+car_resale %>% ExpData(type=2)
+```
+
+## Output
+
+```{r}
+#| echo: false
+car_resale %>% ExpData(type=2)
+```
+:::
+
+## Converting Columns to Factors
+
+This section defines categorical columns and converts them into factors.
+
+::: callout-tip
+Converting to factors is essential for categorical analysis.
+:::
+
+```{r}
+cols <- c("Mfg_Month", "HP_Bin", "CC_bin", "Doors", "Gears", 
+          "Cylinders", "Fuel_Type", "Color", "Mfr_Guarantee", "BOVAG_Guarantee", 
+          "Met_Color", "Automatic_airco", "Boardcomputer", "ABS", "Airbag_1", 
+          "Airbag_2", "Airco", "CD_Player", "Central_Lock", "Powered_Windows", 
+          "Power_Steering", "Radio", "Mistlamps", "Sport_Model", "Backseat_Divider", 
+          "Metallic_Rim", "Radio_cassette", "Tow_Bar")
+
+car_resale <- car_resale %>%
+  mutate(Id = as.character(Id)) %>%
+  mutate(across(all_of(cols), as.factor))
+```
+
+## Numerical Visualization
+
+This section generates visualizations for numeric data with and without target variables.
+
+::: callout-tip
+## For more details
+
+Please visit [SmartEDA Documentation](https://daya6489.github.io/SmartEDA/reference/ExpNumViz.html)
+:::
+
+::: panel-tabset
+## Code
+
+```{r}
+#| eval: false
+car_resale %>% ExpNumViz(target = NULL, nlim = 10, Page = c(2,2))
+```
+
+## Output
+
+```{r}
+#| echo: false
+car_resale %>% ExpNumViz(target = NULL, nlim = 10, Page = c(2,2))
+```
+:::
+
+::: panel-tabset
+## Code
+
+```{r}
+#| eval: false
+car_resale %>% ExpNumViz(target = "Price", nlim = 10, Page = c(2,2))
+```
+
+## Output
+
+```{r}
+#| echo: false
+car_resale %>% ExpNumViz(target = "Price", nlim = 10, Page = c(2,2))
+```
+:::
+
+::: panel-tabset
+## Code
+
+```{r}
+#| eval: false
+car_resale %>% ExpCatViz(target = NULL, col = "sky blue", clim = 10, margin = 2, Page = c(4,4), sample = 16)
+```
+
+## Output
+
+```{r}
+#| echo: false
+car_resale %>% ExpCatViz(target = NULL, col = "sky blue", clim = 10, margin = 2, Page = c(4,4), sample = 16)
+```
+:::
+
+## Multiple Linear Regression Method
+
+Builds a multiple linear regression model with selected predictors.
+
+::: callout-tip
+Linear regression is used to understand relationships between the dependent variable and predictors.
+:::
+
+```{r}
+model <- lm(Price ~ Age_08_04 + Mfg_Year + KM + Weight + Guarantee_Period,
+            data = car_resale)
+model
+```
+
+## Check for multicollinearity
+
+Checks for multicollinearity between predictors and plots the Variance Inflation Factor (VIF).
+
+::: callout-tip
+For more details, please visit [easystats Performance Documentation](https://easystats.github.io/performance/reference/index.html)
+:::
+
+```{r}
+check_collinearity(model)
+```
+
+```{r}
+check_c <- check_collinearity(model)
+plot(check_c)
+```
+
+## Checking for normality
+
+Performs normality and heteroscedasticity checks on the regression model.
+
+::: callout-tip
+Normality and homoscedasticity are essential assumptions for linear regression.
+:::
+
+```{r}
+model1 <- lm(Price ~ Age_08_04 + KM + Weight + Guarantee_Period, data = car_resale)
+check_normality(model1)
+```
+
+```{r}
+check_heteroscedasticity(model1)
+```
+
+::: panel-tabset
+## Code
+```{r}
+check_model(model1)
+```
+## Output
+```{r}
+check_model(model1)
+```
+:::
+
+## Model Summary and Regression Table
+
+Displays model summary and regression table with fit statistics.
+
+::: panel-tabset
+## Code
+```{r}
+summary(model1)
+```
+## Output
+```{r}
+summary(model1)
+```
+:::
+
+::: panel-tabset
+## Option 1
+```{r}
+tbl_regression(model1, intercept = TRUE)
+```
+## Option 2
+```{r}
+tbl_regression(model1, intercept = TRUE) %>%
+  add_glance_source_note(
+    label = list(sigma ~ "σ"),
+    include = c(r.squared, adj.r.squared, AIC, statistic, p.value, sigma)
+  )
+```
+:::
+
+
+```{r}
+p_model1 <- parameters(model1)
+```
+
+::: panel-tabset
+## Option 1: ggplot
+```{r}
+plot(parameters(model1))
+```
+
+## Option 2: ggstatsplot
+```{r}
+ggcoefstats(model1,
+            output = "plot")
+```
+:::
+
+# References
+
+-   Prof Kam Tin Seong (2025) Lecture 5. Physical version.

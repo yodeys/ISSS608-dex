@@ -13,12 +13,32 @@ website:
         text: "Hands-on Exercise 1"
       - href: Hands-on_Ex/Hands-on_Ex02.html
         text: "Hands-on Exercise 2"
+      - href: Hands-on_Ex/Hands-on_Ex03.html
+        text: "Hands-on Exercise 3"
+      - href: Hands-on_Ex/Hands-on_Ex04.html
+        text: "Hands-on Exercise 4"
+      - href: Hands-on_Ex/Hands-on_Ex05.html
+        text: "Hands-on Exercise 5"
+      - href: Hands-on_Ex/Hands-on_Ex06.html
+        text: "Hands-on Exercise 6"
+      - href: Hands-on_Ex/Hands-on_Ex07.html
+        text: "Hands-on Exercise 7"
+      - href: Hands-on_Ex/Hands-on_Ex08.html
+        text: "Hands-on Exercise 8"
+      - href: Hands-on_Ex/Hands-on_Ex09.html
+        text: "Hands-on Exercise 9"
     - text: "In-class Exercise"
       menu:
       - text: "In-class Exercise 1"
         href: https://public.tableau.com/views/In-class_Ex01_17371866977140/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link
       - text: "In-class Exercise 2"
         href: https://public.tableau.com/views/In-class_Ex02_17377894914220/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link
+      - text: "In-class Exercise 3"
+        href: In-class_Ex/In-class_Ex03/In-class_Ex03.qmd
+      - text: "In-class Exercise 4"
+        href: In-class_Ex/In-class_Ex04/In-class_Ex04.qmd
+      - text: "In-class Exercise 5"
+        href: In-class_Ex/In-class_Ex05/In-class_Ex05.qmd
     - text: "Take-home Exercise"
       menu:
       - text: "Take-home Exercise 1"

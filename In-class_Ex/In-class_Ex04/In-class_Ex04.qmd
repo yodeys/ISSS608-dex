@@ -1,0 +1,86 @@
+---
+title: "In-class Exercise 04"
+author: "Ou Yiming"
+date-modified: "last-modified"
+execute:
+  echo: true
+  eval: true
+  warning: false
+  freeze: true
+---
+
+# Installing the required R packages
+
+First, write a code chunk to install and launch the following R packages
+
+```{r}
+pacman::p_load(ggdist, ggridges, ggthemes,
+               colorspace, haven, SmartEDA, 
+               tidyverse, tidymodels,
+               ggscatterstats)
+```
+
+## Importing Data
+
+Code chunk below uses read_csv() of readr to import Exam_data.csv into r environment as a tibble data.frame.
+
+```{r}
+exam_data <- read_csv("data/Exam_data.csv")
+```
+
+# Comparing different plots
+
+## Plotting a Boxplot for each class
+
+```{r}
+ggplot(data = exam_data,
+       aes(x = ENGLISH,
+           y = CLASS)) +
+  scale_x_continuous(
+    name = "English grades",
+    expand = c(0, 0)
+  ) +
+  geom_boxplot()
+```
+
+## Plotting a Ridgeline plot for each class
+
+```{r}
+ggplot(data = exam_data,
+       aes(x = ENGLISH,
+           y = CLASS)) +
+  geom_density_ridges(
+    scale = 3,
+    rel_min_height = 0.01,
+    bandwidth = 3.4,
+    fill = lighten("#7097BB", .3),
+    color = "white"
+  ) +
+  scale_x_continuous(
+    name = "English grades",
+    expand = c(0, 0)
+  ) +
+  scale_y_discrete(name = NULL, expand = expansion(add = c(0.2, 2.6))) +
+  theme_ridges()
+```
+
+## Plotting a half eye graph
+
+```{r}
+ggplot(data = exam_data, 
+       aes(x = RACE, 
+           y = ENGLISH)) +
+  stat_halfeye(adjust = 0.5,
+               justification = -0.2,
+               .width = 0,
+               point_colour = NA) +
+  geom_boxplot(width = .20,
+               outlier.shape = NA) +
+  stat_dots(side = "left", 
+            justification = 1.2, 
+            binwidth = .5,
+            dotsize = 2)
+```
+# References
+
+-   Prof Kam Tin Seong (2025) https://r4va.netlify.app/chap01. Online version
