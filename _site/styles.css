@@ -1,0 +1,64 @@
+/* General Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f8ff; /* Light blue background */
+    color: #333; /* Dark gray text */
+}
+
+/* Header Styling */
+.navbar, .navbar-default {
+    background-color: #0056b3 !important; /* Dark blue header */
+    border-bottom: 3px solid #004494;
+}
+
+/* Navbar Font Styling */
+.navbar a {
+    color: #a3d5ff !important; /* Light blue text */
+    font-size: 14px !important; /* Smaller font size */
+}
+
+.navbar a:hover {
+    color: #c7e5ff !important; /* Slightly brighter blue on hover */
+}
+
+/* Sidebar Styling */
+.tocify {
+    background-color: #e6f0ff; /* Light blue sidebar */
+    border-right: 3px solid #0056b3;
+}
+
+.tocify a {
+    color: #004494;
+}
+
+.tocify a:hover {
+    color: #002b80;
+}
+
+/* Link Styling */
+a {
+    color: #0056b3;
+}
+
+a:hover {
+    color: #002b80;
+    text-decoration: underline;
+}
+
+/* Table Styling */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+th {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px;
+}
+
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
