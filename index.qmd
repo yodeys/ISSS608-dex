@@ -1,9 +1,17 @@
 ---
-title: "ISSS608-dex"
+title: "ISSS608 - Visual Analytics and Applications"
 ---
 
-Welcome to ISSS608 **Visual Analytics and Applications**
+------------------------------------------------------------------------
 
-![](Orange_Cat_Sunglasses.jpg)
+Welcome to my website for the Visual Analytics and Applications course, taught by **Prof Kam Tin Seong**. This website is documents my learning journey of creating data visualization, utilizing R and Tableau, throughout this course.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+::: {style="display: flex; justify-content: space-around; gap: 10px; flex-wrap: wrap;"}
+<a href="Hands-on_Ex/Hands-on_Ex00.html"> <img src="Images/Hands-On_Ex_Cat.png" alt="Hands-on Exercise" width="150"/> </a>
+
+<a href="In-class_Ex/In-class_Ex01/In-class_Ex01.html"> <img src="Images/In-Class_Ex_Cat.png" alt="In-class Exercise" width="150"/> </a>
+
+<a href="Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html"> <img src="Images/Take-Home_Ex_Cat.png" alt="Take-home Exercise" width="150"/> </a>
+
+<a href="Group_Project/Group_Project01.html"> <img src="Images/Group-Project_Cat.png" alt="Group Project" width="150"/> </a>
+:::

@@ -478,9 +478,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "ISSS608-dex",
+    "title": "ISSS608 - Visual Analytics and Applications",
     "section": "",
-    "text": "Welcome to ISSS608 Visual Analytics and Applications\n\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "Welcome to my website for the Visual Analytics and Applications course, taught by Prof Kam Tin Seong. This website is documents my learning journey of creating data visualization, utilizing R and Tableau, throughout this course."
   },
   {
     "objectID": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html",
@@ -614,5 +614,12 @@
     "title": "Take-home Excercise 1: Creating data visualization beyond default",
     "section": "3.1.6 Summary",
     "text": "3.1.6 Summary\n\n3.1.6.1 Conclusion\n\nAge and Heart Attack: Adult and Middle-Age patients tend to have higher heart attack occurrences, but the weak association with age suggests that further analysis is needed to better understand its impact.\nHeart Rate and Risk: Patients with heart attacks show slightly higher heart rates, especially in older age groups. While there is a trend, more analysis is required to confirm its significance.\nRisk Factors: Smoking is the most consistent risk factor across age groups, while family history increases risk in older individuals. Risk factors appear to act independently.\nLifestyle Factors: Physical activity, diet, and alcohol consumption are linked to heart attack occurrence, but similar patterns are seen in both heart attack and non-heart attack groups.\nAccumulated Risk: Heart attack occurrence increases slightly with the accumulation of 1 to 5 risk factors. However, due to small sample sizes at higher risk levels, further modeling and collection of data for risk levels 6 and above are required for more reliable insights.\n\n\n\n3.1.6.2 Future Work\nWhile the visualizations provide useful observations, further statistical analyses and modeling techniques (e.g., logistic regression, decision trees) are essential to better explain the true impact of individual and combined variables on heart attack occurrence. These models can help quantify the relative contribution of each variable, determine interactions between risk factors and potentially identify new insights that can inform preventive measures and interventions for heart attacks."
+  },
+  {
+    "objectID": "index.html#welcome-to-my-visual-analytics-journey",
+    "href": "index.html#welcome-to-my-visual-analytics-journey",
+    "title": "ISSS608 - Visual Analytics and Applications",
+    "section": "Welcome to my Visual Analytics Journey!",
+    "text": "Welcome to my Visual Analytics Journey!\nWelcome to my website for the Visual Analytics and Applications course, taught by Prof Kam Tin Seong. This website is documents my learning journey of creating data visualization, utilizing R and Tableau, throughout this course."
   }
 ]

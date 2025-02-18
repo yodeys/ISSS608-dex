@@ -5,6 +5,11 @@ body {
     color: #333; /* Dark gray text */
 }
 
+/* Set dark blue color for all headers */
+h1, h2, h3, h4, h5, h6 {
+    color: #336699; /* Dark blue color */
+}
+
 /* Header Styling */
 .navbar, .navbar-default {
     background-color: #0056b3 !important; /* Dark blue header */
@@ -13,12 +18,12 @@ body {
 
 /* Navbar Font Styling */
 .navbar a {
-    color: #a3d5ff !important; /* Light blue text */
+    color: #ffffff !important; /* Light blue text */
     font-size: 14px !important; /* Smaller font size */
 }
 
 .navbar a:hover {
-    color: #c7e5ff !important; /* Slightly brighter blue on hover */
+    color: #004080 !important; /* Slightly brighter blue on hover */
 }
 
 .navbar-brand img {
@@ -26,9 +31,24 @@ body {
     width: auto !important;   /* Maintain aspect ratio */
 }
 
+/* Dropdown Background */
+.dropdown-menu {
+    background-color: #b3d1ff !important; /* Slightly darker blue for better contrast */
+}
+
+/* Dropdown Text */
+.dropdown-menu a {
+    color: #003366 !important; /* Dark blue text for better readability */
+}
+
+.dropdown-menu a:hover {
+    background-color: #0059b3 !important; /* Darker blue on hover */
+    color: #ffffff !important; /* White text on hover */
+}
+
 /* Sidebar Styling */
 .tocify {
-    background-color: #e6f0ff; /* Light blue sidebar */
+    background-color: #cce0ff; /* Light blue sidebar */
     border-right: 3px solid #0056b3;
 }
 
