@@ -40,8 +40,6 @@ The following R packages will be loaded using the `p_load()` function for the an
 
 -   **tidyverse**: Core collection of R packages designed for data science.
 
-<!-- -->
-
 -   **moments**: Statistical package for calculating moments such as skewness and kurtosis.
 
 -   **ggrepel**: Provides geoms for **ggplot2** to repel overlapping text labels, making plots more readable.
@@ -327,7 +325,9 @@ Using `str()`, we can observe that our pre-processed dataset now consists of **2
 str(jha_clean)
 ```
 
-## 3. EDA
+# 3. EDA
+
+------------------------------------------------------------------------
 
 ### 3.1.1 Age Distribution by Heart Attack Occurence
 
