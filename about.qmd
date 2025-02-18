@@ -3,3 +3,5 @@ title: "About"
 ---
 
 Cool Beans\~
+
+![](Orange_Cat_Sunglasses.jpg){fig-align="center"}
