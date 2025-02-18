@@ -30,15 +30,15 @@ website:
     - text: "In-class Exercise"
       menu:
       - text: "1. Intro to Tableau"
-        href: In-class_Ex/In-class_Ex01/In-class_Ex01.qmd
+        href: In-class_Ex/In-class_Ex01/In-class_Ex01.html
       - text: "2. Creating Dashboards (Tableau)"
-        href: In-class_Ex/In-class_Ex02/In-class_Ex02.qmd
+        href: In-class_Ex/In-class_Ex02/In-class_Ex02.html
       - text: "3. Crafting Stories (Tableau)"
-        href: In-class_Ex/In-class_Ex03/In-class_Ex03.qmd
+        href: In-class_Ex/In-class_Ex03/In-class_Ex03.html
       - text: "4. Boxplot"
-        href: In-class_Ex/In-class_Ex04/In-class_Ex04.qmd
+        href: In-class_Ex/In-class_Ex04/In-class_Ex04.html
       - text: "5 Visual Analytics for Building Better Explanatory Models"
-        href: In-class_Ex/In-class_Ex05/In-class_Ex05.qmd
+        href: In-class_Ex/In-class_Ex05/In-class_Ex05.html
     - text: "Take-home Exercise"
       menu:
       - text: "1. Take-home Exercise 1"
