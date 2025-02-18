@@ -21,6 +21,11 @@ body {
     color: #c7e5ff !important; /* Slightly brighter blue on hover */
 }
 
+.navbar-brand img {
+    height: 100px !important;  /* Adjust height */
+    width: auto !important;   /* Maintain aspect ratio */
+}
+
 /* Sidebar Styling */
 .tocify {
     background-color: #e6f0ff; /* Light blue sidebar */

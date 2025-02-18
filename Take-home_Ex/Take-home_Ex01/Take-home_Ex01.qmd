@@ -1,0 +1,840 @@
+---
+title: "Take-home Excercise 1: Creating data visualization beyond default"
+author: "Ou Yiming"
+date-modified: "last-modified"
+format: 
+  html:
+    code-tools: true
+    code-fold: true
+    code-overflow: wrap
+execute:
+  echo: true
+  eval: true
+  warning: false
+  freeze: true
+---
+
+# 1. Overview
+
+------------------------------------------------------------------------
+
+## **1.1 Context**
+
+This dataset contains information on heart attack cases in Japan, capturing various patient attributes such as age, gender, blood pressure, cholesterol levels, and other health indicators. Analyzing these factors can provide insights into key contributors to heart attacks and help identify high-risk groups.
+
+## 1.2 Task
+
+Using the dataset, this post aims to utilize appropriate Exploratory Data Analysis (EDA) techniques and `ggplot2` functions to:
+
+-   Examine the distribution of heart attack occurrences based on patient demographics and medical history, and
+
+-   Investigate the relationships between heart attack incidence and factors such as age, gender, cholesterol levels, blood pressure, and other relevant health parameters.
+
+# 2. Getting Started
+
+------------------------------------------------------------------------
+
+## 2.1 Load packages
+
+The following R packages will be loaded using the `p_load()` function for the analysis.
+
+-   **tidyverse**: Core collection of R packages designed for data science.
+
+<!-- -->
+
+-   **moments**: Statistical package for calculating moments such as skewness and kurtosis.
+
+-   **ggrepel**: Provides geoms for **ggplot2** to repel overlapping text labels, making plots more readable.
+
+-   **ggthemes**: Provides additional themes for **ggplot2**, enhancing plot aesthetics.
+
+-   **patchwork**: A package for combining multiple **ggplot2** plots into a single layout, enabling the creation of complex and multi-panel visualizations.
+
+-   **dplyr**: A package for data manipulation, providing easy-to-use functions for transforming, summarizing, and filtering data.
+
+-   **ggstatsplot**: An extension of **ggplot2** that provides easy-to-use functions for visualizing statistical results, including p-values and confidence intervals.
+
+-   **ggalluvial**: A **ggplot2** extension for creating alluvial diagrams, useful for visualizing categorical data flows and relationships across multiple variables.
+
+```{r}
+pacman::p_load(tidyverse, moments, ggrepel, ggthemes,
+               patchwork, dplyr, ggstatsplot, ggalluvial)
+```
+
+## 2.2 Import data
+
+The dataset (`japan_heart_attack_dataset.csv`) used in this exercise is sourced from the Kaggle project titled **"Heart Attack in Japan (Youth vs Adult)"** by Ashay Choudhary. This dataset provides information on heart attack cases in Japan, focusing on both youth and adult populations, and includes various health-related attributes such as age, cholesterol levels, blood pressure, and more.
+
+The dataset will be imported as jha.
+
+```{r}
+jha <- read_csv("data/japan_heart_attack_dataset.csv")
+```
+
+## 2.2 Data pre-processing
+
+In this section, we will be focusing on the pre-proccessing of the data that we will be using for the analysis.
+
+### 2.2.1 Glimpse of Data
+
+Using the `glimpse` function, we can see that dataset contains 30,000 observations (rows) across 32 variables (columns). Each observation corresponds to a patient case from the heart attack dataset in Japan, and the variables provide information on various health indicators. The column names, column type, and the first few entries of each column can be observed below.
+
+```{r}
+glimpse(jha)
+```
+
+### 2.2.2 Removing columns with no description
+
+Due to a lack of information on the additional columns, we will filter out the extra columns in our dataset as part of the pre-processing. Specifically, we will retain only columns 1 to 17 for our analysis.
+
+```{r}
+jha_clean <- jha %>%
+  select(1:17)
+```
+
+The following shows the unique values of each column to identify the amount variation in our variables.
+
+```{r}
+sapply(jha_clean, function(x) length(unique(x)))
+```
+
+The following shows a summary of the cleaned dataset. Some of the numerical variables in the dataset contain questionable figures which will be dealt in a later step of pre-processing.
+
+```{r}
+summary(jha_clean)
+```
+
+### 2.2.3 Checking for duplicates and missing values
+
+To ensure data quality, we will check for duplicate rows and missing values in the dataset as part of our pre-processing step. Removing duplicates and handling missing values helps maintain the integrity of our analysis.
+
+We can see that there is no duplicate entries in the data.
+
+```{r}
+jha_clean[duplicated(jha_clean),]
+```
+
+We can also see that there is no missing values in the data.
+
+```{r}
+colSums(is.na(jha_clean))
+```
+
+### 2.2.4 Checking of data structure
+
+Using the `str()` function, we aim to understand the columns/variables being used in our analysis and the data structure they are casted as.
+
+The primary columns/variables that are present in the dataset are as follow:
+
+| Variable Name | Description | Type of Variable |
+|-------------------|----------------------------------|-------------------|
+| *Age* | Age of the patient | Numerical Continuous |
+| *Gender* | Gender of the patient (Male/Female) | Categorical unordered |
+| *Region* | Geographic region where the patient resides (Urban/Rural) | Categorical |
+| *Smoking_History* | Patient's smoking history (Yes/No) | Categorical |
+| *Diabetes_History* | History of diabetes (Yes/No) | Categorical |
+| *Hypertension_History* | History of hypertension (Yes/No) | Categorical |
+| *Cholesterol_Level* | Cholesterol level of the patient | Numerical Continuous |
+| *Physical_Activity* | Level of physical activity (Low/Moderate/High) | Categorical |
+| *Diet_Quality* | Quality of diet (Poor/Average/Good) | Categorical |
+| *Alcohol_Consumption* | Frequency of alcohol consumption (Yes/No) | Categorical |
+| *Stress_Levels* | Patient's stress levels (Low/Moderate/High) | Numerical Continuous |
+| *BMI* | Body Mass Index of the patient | Numerical Continuous |
+| *Heart_Rate* | Resting heart rate of the patient | Numerical Continuous |
+| *Systolic_BP* | Systolic blood pressure | Numerical Continuous |
+| *Diastolic_BP* | Diastolic blood pressure | Numerical Continuous |
+| *Family_History* | Family history of heart disease (Yes/No) | Categorical |
+| *Heart_Attack_Occurrence* | Whether the patient had a heart attack (Yes/No) | Categorical (Target) |
+
+```{r}
+str(jha_clean)
+```
+
+After inspection, the variables are casted as the right data types. Hence, no modification is required.
+
+### 2.2.5 Removing Outliers
+
+To detect outliers, we will use the Z-Score method, which calculates how many standard deviations each data point is from the mean. Any data point with a Z-Score greater than 3 or less than -3 is typically considered an outlier.
+
+```{r}
+continuous_vars <- c("Age", "Cholesterol_Level", "Stress_Levels", "BMI", "Heart_Rate", "Systolic_BP", "Diastolic_BP")
+
+# Function to calculate Z-Score and identify outliers
+z_score_outliers <- function(x) {
+  z_scores <- (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
+  sum(abs(z_scores) > 3)
+}
+
+sapply(jha_clean[continuous_vars], z_score_outliers)
+
+```
+
+To ensure our dataset is free from extreme values that might skew the analysis, we will clean the outliers detected using the Z-Score method.
+
+A maximum of 92 outliers were found in the numerical continuous variables of the dataset. As it is confirmed through further research that some of the values for these particular variables are out of the ordinary, a method suitable for dealing with these outliers was to remove them. Any observation with a Z-Score greater than 3 or less than -3 will be removed from the continuous numerical variables.
+
+```{r}
+remove_outliers <- function(df, cols) {
+  for (col in cols) {
+    z_scores <- (df[[col]] - mean(df[[col]], na.rm = TRUE)) / sd(df[[col]], na.rm = TRUE)
+    df <- df[abs(z_scores) <= 3, ]  # Keep rows within Z-Score range
+  }
+  return(df)
+}
+
+# Remove outliers
+jha_clean <- remove_outliers(jha_clean, continuous_vars)
+```
+
+After removing the outliers, the dataset now contains **29,596 observations** and **17 columns**.
+
+### 2.2.6 Creation of additional variables
+
+To enhance the analysis, we will create new categorical variables by binning continuous variables such as age, cholesterol level, BMI, heart rate, systolic blood pressure, and diastolic blood pressure.
+
+:::: callout-note
+<div>
+
+Considerations when splitting the data:
+
+-   Having equal splits (to prevent skew)
+
+-   Medically relevant categories for better interpretation
+
+</div>
+::::
+
+```{r}
+# Binning Age into categories
+jha_clean <- jha_clean %>%
+  mutate(Age_Group = case_when(
+    Age < 30 ~ "Youth",
+    Age >= 30 & Age < 50 ~ "Adult",
+    Age >= 50 & Age < 70 ~ "Middle-aged",
+    TRUE ~ "Elderly"
+  ))
+
+# Binning Cholesterol Level based on standard medical ranges
+jha_clean <- jha_clean %>%
+  mutate(Cholesterol_Category = case_when(
+    Cholesterol_Level < 200 ~ "Desirable",
+    Cholesterol_Level >= 200 & Cholesterol_Level < 240 ~ "Borderline High",
+    TRUE ~ "High"
+  ))
+
+# Binning BMI based on WHO weight status categories
+jha_clean <- jha_clean %>%
+  mutate(BMI_Category = case_when(
+    BMI < 18.5 ~ "Underweight",
+    BMI >= 18.5 & BMI < 24.9 ~ "Normal weight",
+    BMI >= 25 & BMI < 29.9 ~ "Overweight",
+    TRUE ~ "Obese"
+  ))
+
+# Binning Heart Rate into categories
+jha_clean <- jha_clean %>%
+  mutate(Heart_Rate_Category = case_when(
+    Heart_Rate < 60 ~ "Below Normal",
+    Heart_Rate >= 60 & Heart_Rate <= 100 ~ "Normal",
+    TRUE ~ "Above Normal"
+  ))
+
+# Binning Systolic BP based on AHA guidelines
+jha_clean <- jha_clean %>%
+  mutate(Systolic_BP_Category = case_when(
+    Systolic_BP < 120 ~ "Normal",
+    Systolic_BP >= 120 & Systolic_BP < 130 ~ "Elevated",
+    Systolic_BP >= 130 & Systolic_BP < 140 ~ "Hypertension Stage 1",
+    Systolic_BP >= 140 ~ "Hypertension Stage 2"
+  ))
+
+# Binning Diastolic BP based on AHA guidelines
+jha_clean <- jha_clean %>%
+  mutate(Diastolic_BP_Category = case_when(
+    Diastolic_BP < 80 ~ "Normal",
+    Diastolic_BP >= 80 & Diastolic_BP < 90 ~ "Hypertension Stage 1",
+    TRUE ~ "Hypertension Stage 2"
+  ))
+```
+
+### 2.2.7 Checking of frequency distribution and skewness
+
+To ensure balanced data for modeling, we will check all categorical variables for class imbalances.
+
+::: panel-tabset
+## Code
+
+```{r}
+#| eval: false
+cat_vars <- c("Gender", "Region", "Smoking_History", "Diabetes_History", 
+              "Hypertension_History", "Physical_Activity", "Diet_Quality", 
+              "Alcohol_Consumption", "Stress_Levels", "Family_History", 
+              "Heart_Attack_Occurrence", "Age_Group", "Cholesterol_Category", 
+              "BMI_Category", "Heart_Rate_Category", "Systolic_BP_Category", "Diastolic_BP_Category")
+
+for (var in cat_vars) {
+  cat("\n", var, "\n")
+  print(table(jha_clean[[var]]))
+}
+```
+
+## Output
+
+```{r}
+#| echo: false
+cat_vars <- c("Gender", "Region", "Smoking_History", "Diabetes_History", 
+              "Hypertension_History", "Physical_Activity", "Diet_Quality", 
+              "Alcohol_Consumption", "Family_History", 
+              "Heart_Attack_Occurrence", "Age_Group", "Cholesterol_Category", 
+              "BMI_Category", "Heart_Rate_Category", "Systolic_BP_Category", "Diastolic_BP_Category")
+
+for (var in cat_vars) {
+  cat("\n", var, "\n")
+  print(table(jha_clean[[var]]))
+}
+```
+:::
+
+Next, we will also check for skewness in the continuous variables. Skewness indicates asymmetry in the data distribution, which can affect model predictions. Data with high skewness might require transformation for better model performance.
+
+::: panel-tabset
+## Code
+
+```{r}
+#| eval: false
+continuous_vars <- c("Age", "Cholesterol_Level", "BMI", "Heart_Rate", "Systolic_BP", "Diastolic_BP")
+
+sapply(jha_clean[continuous_vars], skewness)
+```
+
+## Output
+
+```{r}
+#| echo: false
+continuous_vars <- c("Age", "Cholesterol_Level", "BMI", "Heart_Rate", "Systolic_BP", "Diastolic_BP")
+
+sapply(jha_clean[continuous_vars], skewness)
+```
+:::
+
+The skewness values are all close to 0, indicating that the continuous variables are approximately normally distributed. Since there is no significant skewness, no transformations are necessary for these variables before model training.
+
+### 2.2.8 Preview pre-processed dataframe
+
+Using `str()`, we can observe that our pre-processed dataset now consists of **29,596 observations** and **23 columns**.
+
+```{r}
+str(jha_clean)
+```
+
+## 3. EDA
+
+### 3.1.1 Age Distribution by Heart Attack Occurence
+
+```{r}
+jha_clean$Heart_Attack_Occurrence <- as.factor(jha_clean$Heart_Attack_Occurrence)
+
+violin_plot <- ggplot(jha_clean, aes(x = Heart_Attack_Occurrence, y = Age, fill = Heart_Attack_Occurrence)) +
+  geom_violin(trim = FALSE, scale = "area") +
+  geom_boxplot(width = 0.1, position = position_dodge(0.9), outlier.shape = NA) +
+  stat_summary(fun=median, geom="point", shape=18, size=3, color="black") +
+  stat_summary(fun=median, geom="text", aes(label=round(..y..,1)), vjust=-1.5) +
+  labs(title = "Heart Attack Occurrence by Age Distribution",
+       x = "Heart Attack Occurrence", y = "Age",
+       subtitle = "Violin plot with boxplot overlay and Bar plot") +
+  theme_minimal()
+
+bar_plot <- ggbarstats(jha_clean, 
+                       x = Age_Group, 
+                       y = Heart_Attack_Occurrence)
+
+violin_plot + bar_plot + plot_layout(guides = "collect") & theme(legend.position = "bottom")
+```
+
+::: {.callout-note icon="false"}
+## Insight
+
+-   Patients who experienced heart attacks (**49 years**) tend to be slightly older, with a median age higher than that of patients without heart attacks (**48 years**).
+
+-   Both groups cover a similar age range, but the **density is higher in the adult and elderly brackets for heart attack cases**, suggesting a strong association between age and heart attack occurrence.
+
+-   To further confirm the observation that there is a strong association between age and heart attack occurence, a significant test of association was performed on the right. However, given the Cramer's V value (0.01), there seems to be a **weak association** between age group and heart attack occurrence.
+:::
+
+### 3.1.2 Exploring relationships between Heart Attack Occurrence, by Age Group and Heart Rate
+
+```{r}
+# Ensure Age_Group are in order
+jha_clean$Age_Group <- factor(jha_clean$Age_Group, levels = c("Youth", "Adult", "Middle-aged", "Elderly"))
+
+# Create the faceted density plot
+heart_rate_density <- ggplot(data = jha_clean, aes(x = Heart_Rate, fill = Heart_Attack_Occurrence)) +    
+  geom_density(alpha = 0.3) + 
+  facet_wrap(~ Age_Group, scales = "free_y", nrow = 4) +
+  labs(x = "Heart Rate", y = "Density", title = "Heart Rate Distribution Across Age Groups", 
+       subtitle = "Density and Box plot of Heart Rate, colored by Heart Attack Occurrence") +
+  theme_minimal() +
+  theme(legend.position = "none", 
+        plot.title = element_text(face = "bold", size = 12), 
+        plot.subtitle = element_text(size = 8), 
+        axis.title.y = element_text(size = 8), 
+        axis.title.x = element_text(size = 8))
+
+# Create the boxplot
+heart_rate_boxplot <- ggplot(jha_clean, aes(x = Age_Group, y = Heart_Rate, fill = Heart_Attack_Occurrence)) +
+  geom_boxplot(position = position_dodge(0.8)) +
+  stat_summary(fun = mean, geom = "point", shape = 18, size = 3, color = "black", position = position_dodge(0.8)) +
+  stat_summary(fun = median, geom = "text",aes(label=round(..y..,1)), vjust=-1.0, size = 2, position = position_dodge(0.8)) +
+  coord_cartesian(ylim = c(min(jha_clean$Heart_Rate), max(jha_clean$Heart_Rate))) +
+  theme_minimal() +
+  labs(y = "Heart Rate") +
+  theme(axis.title.x = element_blank(), legend.title = element_text(face = "bold", size = 8), 
+        plot.subtitle = element_text(size = 8), axis.title.y = element_text(size = 8))
+
+# Combine the plots with adjusted layout
+heart_rate_density + heart_rate_boxplot
+```
+
+::: {.callout-note icon="false"}
+## Insight
+
+-   Across all age groups, patients who experienced heart attacks tend to have **slightly higher median heart rates** compared to those who did not.
+
+-   In the Elderly group, the heart rates for patients with heart attacks are **more concentrated towards the higher end** of the scale.
+
+-   The Youth group show **a broader sprea**d of heart rates, with less distinction between patients with and without heart attacks.
+
+-   Higher heart rates, especially in older age groups, might indicate an association with increased heart attack risk, though younger patients show less variation.
+:::
+
+### 3.1.3 Impact of Historical Risk Factors on Heart Attack Incidence by Age Group
+
+::: panel-tabset
+## Code
+
+```{r}
+#| eval: false
+# Calculate heart attack percentages for each risk factor across age groups
+risk_factors_summary <- jha_clean %>%
+  group_by(Age_Group) %>%
+  summarise(
+    Smoking = mean(Heart_Attack_Occurrence == "Yes" & Smoking_History == "Yes") * 100,
+    Diabetes = mean(Heart_Attack_Occurrence == "Yes" & Diabetes_History == "Yes") * 100,
+    Hypertension = mean(Heart_Attack_Occurrence == "Yes" & Hypertension_History == "Yes") * 100,
+    Family_History = mean(Heart_Attack_Occurrence == "Yes" & Family_History == "Yes") * 100,
+    .groups = 'drop'
+  ) %>%
+  # Convert to long format for plotting
+  pivot_longer(
+    cols = c(Smoking, Diabetes, Hypertension, Family_History),
+    names_to = "Risk_Factor",
+    values_to = "Heart_Attack_Percentage"
+  )
+
+# Create the visualization
+ggplot(risk_factors_summary, 
+       aes(x = Age_Group, 
+           y = Heart_Attack_Percentage, 
+           fill = Risk_Factor)) +
+  geom_bar(stat = "identity", 
+           position = "dodge",
+           width = 0.7) +
+  geom_text(aes(label = sprintf("%.1f%%", Heart_Attack_Percentage)),
+            position = position_dodge(width = 0.7),
+            vjust = -0.5,
+            size = 3) +
+  scale_fill_manual(values = c("Smoking" = "#D55E00", 
+                              "Diabetes" = "#0072B2",
+                              "Hypertension" = "#009E73",
+                              "Family_History" = "#CC79A7")) +
+  labs(title = "Heart Attack Occurrence by Risk Factors Across Age Groups",
+       subtitle = "Percentage of heart attacks in patients with each risk factor",
+       x = "Age Group",
+       y = "Percentage of Heart Attacks (%)") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 12, face = "bold"),
+    plot.subtitle = element_text(size = 10),
+    axis.title = element_text(size = 10),
+    axis.text = element_text(size = 9),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "right",
+    legend.title = element_text(size = 10)
+  )
+```
+
+## Output
+
+```{r}
+#| echo: false
+# Calculate heart attack percentages for each risk factor across age groups
+risk_factors_summary <- jha_clean %>%
+  group_by(Age_Group) %>%
+  summarise(
+    Smoking = mean(Heart_Attack_Occurrence == "Yes" & Smoking_History == "Yes") * 100,
+    Diabetes = mean(Heart_Attack_Occurrence == "Yes" & Diabetes_History == "Yes") * 100,
+    Hypertension = mean(Heart_Attack_Occurrence == "Yes" & Hypertension_History == "Yes") * 100,
+    Family_History = mean(Heart_Attack_Occurrence == "Yes" & Family_History == "Yes") * 100,
+    .groups = 'drop'
+  ) %>%
+  # Convert to long format for plotting
+  pivot_longer(
+    cols = c(Smoking, Diabetes, Hypertension, Family_History),
+    names_to = "Risk_Factor",
+    values_to = "Heart_Attack_Percentage"
+  )
+
+# Create the visualization
+ggplot(risk_factors_summary, 
+       aes(x = Age_Group, 
+           y = Heart_Attack_Percentage, 
+           fill = Risk_Factor)) +
+  geom_bar(stat = "identity", 
+           position = "dodge",
+           width = 0.7) +
+  geom_text(aes(label = sprintf("%.1f%%", Heart_Attack_Percentage)),
+            position = position_dodge(width = 0.7),
+            vjust = -0.5,
+            size = 3) +
+  scale_fill_manual(values = c("Smoking" = "#D55E00", 
+                              "Diabetes" = "#0072B2",
+                              "Hypertension" = "#009E73",
+                              "Family_History" = "#CC79A7")) +
+  labs(title = "Heart Attack Occurrence by Risk Factors Across Age Groups",
+       subtitle = "Percentage of heart attacks in patients with each risk factor",
+       x = "Age Group",
+       y = "Percentage of Heart Attacks (%)") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 12, face = "bold"),
+    plot.subtitle = element_text(size = 10),
+    axis.title = element_text(size = 10),
+    axis.text = element_text(size = 9),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "right",
+    legend.title = element_text(size = 10)
+  )
+```
+:::
+
+::: {.callout-note icon="false"}
+## Insight
+
+-   All risk factors maintain relatively **consistent levels** across age groups (2.0-3.2% range)
+
+-   **Family History** seems to contribute to a higher risk of heart attack occurrence across age group after youth.
+
+-   **Smoking** consistently presents the highest risk across all age groups.
+
+-   Surprisingly, younger age groups show **comparable risk levels** to older groups.
+
+-   The combination of multiple risk factors might compound the risk, though this isn't shown in the visualization.
+
+-   No dramatic age-related increases in risk for any single factor, suggesting these are **relatively independent risk factors**.
+:::
+
+### 3.1.4
+
+::: panel-tabset
+## Code
+
+```{r}
+#| eval: false
+ # Prepare data focusing on Heart Attack Occurrence = "Yes" by demographic and lifestyle factors
+heart_attack_focus <- jha_clean %>%
+  filter(Heart_Attack_Occurrence == "Yes") %>%
+  select(Gender, Region, Physical_Activity, Diet_Quality, Alcohol_Consumption, Heart_Attack_Occurrence) %>%
+  group_by(Gender, Region, Physical_Activity, Diet_Quality, Alcohol_Consumption, Heart_Attack_Occurrence) %>%
+  summarise(count = n(), .groups = 'drop')
+
+# Create parallel sets visualization focusing on heart attack occurrences for "Yes"
+ggplot(heart_attack_focus,
+       aes(axis1 = Gender, 
+           axis2 = Region,
+           axis3 = Physical_Activity,
+           axis4 = Diet_Quality,
+           axis5 = Alcohol_Consumption,
+           y = count)) +
+  geom_alluvium(aes(fill = Heart_Attack_Occurrence), alpha = 0.6) +
+  geom_stratum(aes(fill = Heart_Attack_Occurrence), alpha = 0.8) +
+  geom_text(stat = "stratum",
+            aes(label = after_stat(stratum)), size = 3) +
+  scale_fill_manual(values = c("Yes" = "#4682B4")) +
+  scale_x_discrete(limits = c("Gender", "Region", "Physical_Activity", "Diet_Quality", "Alcohol_Consumption"),
+                   labels = c("Gender", "Region", "Physical Activity", "Diet Quality", "Alcohol Consumption")) +
+  labs(title = "Heart Attack Occurrence Distribution",
+       subtitle = "Relation between Demographic and Lifestyle Factors to Heart Attack Occurrence",
+       x = "Demographic and Lifestyle Factors",
+       y = "Count",
+       fill = "Heart Attack Occurrence") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title = element_blank(),
+        plot.title = element_text(size = 12, face = "bold"),
+        plot.subtitle = element_text(size = 10),
+        legend.position = "none",
+        axis.title.x = element_blank())
+
+# Prepare data focusing on Heart Attack Occurrence = "No" by demographic and lifestyle factors
+no_heart_attack_focus <- jha_clean %>%
+  filter(Heart_Attack_Occurrence == "No") %>%
+  select(Gender, Region, Physical_Activity, Diet_Quality, Alcohol_Consumption, Heart_Attack_Occurrence) %>%
+  group_by(Gender, Region, Physical_Activity, Diet_Quality, Alcohol_Consumption, Heart_Attack_Occurrence) %>%
+  summarise(count = n(), .groups = 'drop')
+
+# Create the parallel sets visualization focusing on "No" heart attack occurrences
+ggplot(no_heart_attack_focus,
+       aes(axis1 = Gender, 
+           axis2 = Region,
+           axis3 = Physical_Activity,
+           axis4 = Diet_Quality,
+           axis5 = Alcohol_Consumption,
+           y = count)) +
+  geom_alluvium(aes(fill = Heart_Attack_Occurrence), alpha = 0.6) +
+  geom_stratum(aes(fill = Heart_Attack_Occurrence), alpha = 0.8) +
+  geom_text(stat = "stratum",
+            aes(label = after_stat(stratum)), size = 3) +
+  scale_fill_manual(values = c("No" = "#D32F2F")) +
+  scale_x_discrete(limits = c("Gender", "Region", "Physical_Activity", "Diet_Quality", "Alcohol_Consumption"),
+                   labels = c("Gender", "Region", "Physical Activity", "Diet Quality", "Alcohol Consumption")) +
+  labs(title = "Heart Attack Occurrence Distribution",
+       subtitle = "Relation between Demographic and Lifestyle Factors to Heart Attack Occurrence",
+       x = "Demographic and Lifestyle Factors",
+       y = "Count",
+       fill = "Heart Attack Occurrence") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title = element_blank(),
+        plot.title = element_text(size = 12, face = "bold"),
+        plot.subtitle = element_text(size = 10),
+        legend.position = "none",
+        axis.title.x = element_blank())
+```
+
+## Output
+
+```{r}
+#| echo: false
+ # Prepare data focusing on Heart Attack Occurrence = "Yes" by demographic and lifestyle factors
+heart_attack_focus <- jha_clean %>%
+  filter(Heart_Attack_Occurrence == "Yes") %>%
+  select(Gender, Region, Physical_Activity, Diet_Quality, Alcohol_Consumption, Heart_Attack_Occurrence) %>%
+  group_by(Gender, Region, Physical_Activity, Diet_Quality, Alcohol_Consumption, Heart_Attack_Occurrence) %>%
+  summarise(count = n(), .groups = 'drop')
+
+# Create parallel sets visualization focusing on heart attack occurrences for "Yes"
+ggplot(heart_attack_focus,
+       aes(axis1 = Gender, 
+           axis2 = Region,
+           axis3 = Physical_Activity,
+           axis4 = Diet_Quality,
+           axis5 = Alcohol_Consumption,
+           y = count)) +
+  geom_alluvium(aes(fill = Heart_Attack_Occurrence), alpha = 0.6) +
+  geom_stratum(aes(fill = Heart_Attack_Occurrence), alpha = 0.8) +
+  geom_text(stat = "stratum",
+            aes(label = after_stat(stratum)), size = 3) +
+  scale_fill_manual(values = c("Yes" = "#4682B4")) +
+  scale_x_discrete(limits = c("Gender", "Region", "Physical_Activity", "Diet_Quality", "Alcohol_Consumption"),
+                   labels = c("Gender", "Region", "Physical Activity", "Diet Quality", "Alcohol Consumption")) +
+  labs(title = "Heart Attack Occurrence Distribution",
+       subtitle = "Relation between Demographic and Lifestyle Factors to Heart Attack Occurrence",
+       x = "Demographic and Lifestyle Factors",
+       y = "Count",
+       fill = "Heart Attack Occurrence") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title = element_blank(),
+        plot.title = element_text(size = 12, face = "bold"),
+        plot.subtitle = element_text(size = 10),
+        legend.position = "none",
+        axis.title.x = element_blank())
+
+# Prepare data focusing on Heart Attack Occurrence = "No" by demographic and lifestyle factors
+no_heart_attack_focus <- jha_clean %>%
+  filter(Heart_Attack_Occurrence == "No") %>%
+  select(Gender, Region, Physical_Activity, Diet_Quality, Alcohol_Consumption, Heart_Attack_Occurrence) %>%
+  group_by(Gender, Region, Physical_Activity, Diet_Quality, Alcohol_Consumption, Heart_Attack_Occurrence) %>%
+  summarise(count = n(), .groups = 'drop')
+
+# Create the parallel sets visualization focusing on "No" heart attack occurrences
+ggplot(no_heart_attack_focus,
+       aes(axis1 = Gender, 
+           axis2 = Region,
+           axis3 = Physical_Activity,
+           axis4 = Diet_Quality,
+           axis5 = Alcohol_Consumption,
+           y = count)) +
+  geom_alluvium(aes(fill = Heart_Attack_Occurrence), alpha = 0.6) +
+  geom_stratum(aes(fill = Heart_Attack_Occurrence), alpha = 0.8) +
+  geom_text(stat = "stratum",
+            aes(label = after_stat(stratum)), size = 3) +
+  scale_fill_manual(values = c("No" = "#D32F2F")) +
+  scale_x_discrete(limits = c("Gender", "Region", "Physical_Activity", "Diet_Quality", "Alcohol_Consumption"),
+                   labels = c("Gender", "Region", "Physical Activity", "Diet Quality", "Alcohol Consumption")) +
+  labs(title = "Heart Attack Occurrence Distribution",
+       subtitle = "Relation between Demographic and Lifestyle Factors to Heart Attack Occurrence",
+       x = "Demographic and Lifestyle Factors",
+       y = "Count",
+       fill = "Heart Attack Occurrence") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title = element_blank(),
+        plot.title = element_text(size = 12, face = "bold"),
+        plot.subtitle = element_text(size = 10),
+        legend.position = "none",
+        axis.title.x = element_blank())
+```
+:::
+
+::: {.callout-note icon="\"false"}
+## Insight
+
+-   There is a higher percentage of indivuals that experience heart attack coming from **urban regions** regardless of gender.
+
+-   **Moderate physical activity** is common among those with heart attacks.
+
+-   **Good and Average** **diet** appears to be linked to a higher occurrence of heart attacks.
+
+-   **Moderate and low alcohol consumption** shows the most notable presence in the heart attack group.
+
+-   **General Insight**: Although the plot emphasizes the impact of **lifestyle factors** like **physical activity**, **diet**, and **alcohol consumption** on heart attack occurrence, it simply depicts the observations of these factors in the group of people with heart attack occurrence.
+
+-   **Further Investigation:** Upon further comparison with the group with no heart attack occurrence, it seems to exhibit a similar pattern to the group with hear attack occurrence. **Statistical studies** have to be performed to confirm if the pattern is more significant in one group than the other.
+:::
+
+### 3.1.5 Exploring impact of risk factors on Heart Attack Occurence
+
+```{r}
+# Create binary risk factor columns (TRUE if risk factor present, FALSE otherwise)
+jha_clean_filtered <- jha_clean %>%
+  mutate(
+    smoking_risk = ifelse(Smoking_History == "Yes", 1, 0),
+    diabetes_risk = ifelse(Diabetes_History == "Yes", 1, 0),
+    hypertension_risk = ifelse(Hypertension_History == "Yes", 1, 0),
+    cholesterol_risk = ifelse(Cholesterol_Category == "High", 1, 0),
+    bmi_risk = ifelse(BMI_Category == "Obese", 1, 0),
+    bp_risk = ifelse(Systolic_BP_Category %in% c("Hypertension Stage 1", "Hypertension Stage 2"), 1, 0),
+    heart_rate_risk = ifelse(Heart_Rate_Category == "Above Normal", 1, 0)
+  )
+
+# Calculate the total number of risk factors for each individual
+jha_clean_filtered <- jha_clean_filtered %>%
+  mutate(risk_level = smoking_risk + diabetes_risk + hypertension_risk + cholesterol_risk + bmi_risk + bp_risk + heart_rate_risk)
+
+# Summarize the number of individuals with each risk level (from 0 to 8 risk factors)
+risk_summary <- jha_clean_filtered %>%
+  group_by(risk_level) %>%
+  summarise(
+    total_patients = n(),
+    heart_attacks = sum(Heart_Attack_Occurrence == "Yes"),
+    risk_percentage = (heart_attacks / total_patients) * 100
+  ) %>%
+  mutate(risk_label = paste(risk_level, "Risk Factors"))
+
+# Calculate the percentage of the population with each risk level
+total_population <- nrow(jha_clean_filtered)
+risk_summary <- risk_summary %>%
+  mutate(population_percentage = (total_patients / total_population) * 100)
+
+# Display the table
+print(risk_summary)
+```
+
+::: panel-tabset
+## Code
+
+```{r}
+#| eval: false
+ggplot(risk_summary, 
+       aes(x = risk_level, y = risk_percentage)) +
+  geom_line(size = 1, color = "#2C7BB6") +
+  geom_point(aes(size = total_patients), 
+             color = "#2C7BB6", 
+             alpha = 0.7) +
+  geom_text(aes(label = sprintf("%.1f%%", risk_percentage)),
+            vjust = -1, 
+            size = 3) +
+  geom_text(aes(label = paste("n =", total_patients)),
+            vjust = 2, 
+            size = 3) +
+  scale_x_continuous(breaks = 1:6, 
+                     labels = c("1 Risk Factor", "2 Risk Factors", "3 Risk Factors", "4 Risk Factors", "5 Risk Factors", "6 Risk Factors")) +
+  scale_size_continuous(range = c(5, 15)) +
+  labs(title = "Impact of Risk Factors on Heart Attack Occurrence",
+       subtitle = "Percentage of heart attacks increases as more risk factors accumulate",
+       x = "Accumulated Risk Factors",
+       y = "Heart Attack Occurrence (%)") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 12, face = "bold"),
+    plot.subtitle = element_text(size = 10),
+    legend.position = "none",
+    panel.grid.minor = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 8)
+  )
+
+```
+
+## Output
+
+```{r}
+#| echo: false
+ggplot(risk_summary, 
+       aes(x = risk_level, y = risk_percentage)) +
+  geom_line(size = 1, color = "#2C7BB6") +
+  geom_point(aes(size = total_patients), 
+             color = "#2C7BB6", 
+             alpha = 0.7) +
+  geom_text(aes(label = sprintf("%.1f%%", risk_percentage)),
+            vjust = -1, 
+            size = 3) +
+  geom_text(aes(label = paste("n =", total_patients)),
+            vjust = 2, 
+            size = 3) +
+  scale_x_continuous(breaks = 1:6, 
+                     labels = c("1 Risk Factor", "2 Risk Factors", "3 Risk Factors", "4 Risk Factors", "5 Risk Factors", "6 Risk Factors")) +
+  scale_size_continuous(range = c(5, 15)) +
+  labs(title = "Impact of Risk Factors on Heart Attack Occurrence",
+       subtitle = "Percentage of heart attacks increases as more risk factors accumulate",
+       x = "Accumulated Risk Factors",
+       y = "Heart Attack Occurrence (%)") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 12, face = "bold"),
+    plot.subtitle = element_text(size = 10),
+    legend.position = "none",
+    panel.grid.minor = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 8)
+  )
+
+```
+:::
+
+::: callout-note
+## Insight
+
+-   The percentage of heart attacks remains relatively stable (around 9.9%) for individuals with **1 to 3 risk factors**, indicating that a few risk factors don’t dramatically increase heart attack occurrence.
+-   With **4 to 5 risk factors**, the heart attack occurrence percentage rises slightly to 10.0% and 10.6%, showing a modest increase in risk.
+-   At **6 risk factors**, the heart attack occurrence drops sharply to 0%, likely due to a very small sample size (only 49 individuals), suggesting unreliable data for this group.
+-   Larger sample sizes at 1 to 3 risk factors ensure more reliable results, while smaller sample sizes at higher risk levels lead to potential inconsistencies.
+-   The overall trend indicates that heart attack risk **increases slightly with the accumulation of risk factors** up to 5.
+:::
+
+### 3.1.6 Summary
+
+#### 3.1.6.1 Conclusion
+
+-   Age and Heart Attack: Adult and Middle-Age patients tend to have higher heart attack occurrences, but the weak association with age suggests that further analysis is needed to better understand its impact.
+-   Heart Rate and Risk: Patients with heart attacks show slightly higher heart rates, especially in older age groups. While there is a trend, more analysis is required to confirm its significance.
+-   Risk Factors: Smoking is the most consistent risk factor across age groups, while family history increases risk in older individuals. Risk factors appear to act independently.
+-   Lifestyle Factors: Physical activity, diet, and alcohol consumption are linked to heart attack occurrence, but similar patterns are seen in both heart attack and non-heart attack groups.
+-   Accumulated Risk: Heart attack occurrence increases slightly with the accumulation of 1 to 5 risk factors. However, due to small sample sizes at higher risk levels, further modeling and collection of data for risk levels 6 and above are required for more reliable insights.
+
+#### 3.1.6.2 Future Work
+
+While the visualizations provide useful observations, further statistical analyses and modeling techniques (e.g., logistic regression, decision trees) are essential to better explain the true impact of individual and combined variables on heart attack occurrence. These models can help quantify the relative contribution of each variable, determine interactions between risk factors and potentially identify new insights that can inform preventive measures and interventions for heart attacks.
+
+# References
+
+-   Prof Kam Tin Seong (2025) https://r4va.netlify.app/. Online version.

@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "ISSS608-dex Coursework"
+  title: "ISSS608-dex"
   navbar:
     left:
     - text: "Hands-on Exercise"
@@ -35,9 +35,9 @@ website:
         href: https://public.tableau.com/views/In-class_Ex02_17377894914220/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link
       - text: "In-class Exercise 3"
         href: In-class_Ex/In-class_Ex03/In-class_Ex03.qmd
-      - text: "In-class Exercise 4"
+      - text: "4. Boxplot"
         href: In-class_Ex/In-class_Ex04/In-class_Ex04.qmd
-      - text: "In-class Exercise 5"
+      - text: "5 Visual Analytics for Building Better Explanatory Models"
         href: In-class_Ex/In-class_Ex05/In-class_Ex05.qmd
     - text: "Take-home Exercise"
       menu:
