@@ -264,5 +264,12 @@
     "title": "Hands-on Exercise 02: Beyond ggplot2 Fundamentals",
     "section": "Creating a composite figure using patchwork and ggtheme",
     "text": "Creating a composite figure using patchwork and ggtheme\n\npatchwork &lt;- (p1 / p2) | p3\npatchwork & theme_economist()"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ISSS608-dex",
+    "section": "",
+    "text": "Welcome to ISSS608 Visual Analytics and Applications\n\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
   }
 ]
