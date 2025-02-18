@@ -329,7 +329,7 @@ str(jha_clean)
 
 ------------------------------------------------------------------------
 
-### 3.1.1 Age Distribution by Heart Attack Occurence
+## 3.1 Age Distribution by Heart Attack Occurrence
 
 ```{r}
 jha_clean$Heart_Attack_Occurrence <- as.factor(jha_clean$Heart_Attack_Occurrence)
@@ -361,7 +361,7 @@ violin_plot + bar_plot + plot_layout(guides = "collect") & theme(legend.position
 -   To further confirm the observation that there is a strong association between age and heart attack occurence, a significant test of association was performed on the right. However, given the Cramer's V value (0.01), there seems to be a **weak association** between age group and heart attack occurrence.
 :::
 
-### 3.1.2 Exploring relationships between Heart Attack Occurrence, by Age Group and Heart Rate
+## 3.2 Exploring relationships between Heart Attack Occurrence, by Age Group and Heart Rate
 
 ```{r}
 # Ensure Age_Group are in order
@@ -407,7 +407,7 @@ heart_rate_density + heart_rate_boxplot
 -   Higher heart rates, especially in older age groups, might indicate an association with increased heart attack risk, though younger patients show less variation.
 :::
 
-### 3.1.3 Impact of Historical Risk Factors on Heart Attack Incidence by Age Group
+## 3.3 Impact of Historical Risk Factors on Heart Attack Incidence by Age Group
 
 ::: panel-tabset
 ## Code
@@ -533,7 +533,7 @@ ggplot(risk_factors_summary,
 -   No dramatic age-related increases in risk for any single factor, suggesting these are **relatively independent risk factors**.
 :::
 
-### 3.1.4
+## 3.1.4 Exploring Heart Attack Occurrence by demographic and lifestyle factors
 
 ::: panel-tabset
 ## Code
@@ -703,7 +703,7 @@ ggplot(no_heart_attack_focus,
 -   **Further Investigation:** Upon further comparison with the group with no heart attack occurrence, it seems to exhibit a similar pattern to the group with hear attack occurrence. **Statistical studies** have to be performed to confirm if the pattern is more significant in one group than the other.
 :::
 
-### 3.1.5 Exploring impact of risk factors on Heart Attack Occurence
+## 3.1.5 Exploring impact of risk factors on Heart Attack Occurence
 
 ```{r}
 # Create binary risk factor columns (TRUE if risk factor present, FALSE otherwise)
@@ -821,15 +821,15 @@ ggplot(risk_summary,
 -   The overall trend indicates that heart attack risk **increases slightly with the accumulation of risk factors** up to 5.
 :::
 
-### 3.1.6 Summary
+## 3.1.6 Summary
 
 #### 3.1.6.1 Conclusion
 
--   Age and Heart Attack: Adult and Middle-Age patients tend to have higher heart attack occurrences, but the weak association with age suggests that further analysis is needed to better understand its impact.
--   Heart Rate and Risk: Patients with heart attacks show slightly higher heart rates, especially in older age groups. While there is a trend, more analysis is required to confirm its significance.
--   Risk Factors: Smoking is the most consistent risk factor across age groups, while family history increases risk in older individuals. Risk factors appear to act independently.
--   Lifestyle Factors: Physical activity, diet, and alcohol consumption are linked to heart attack occurrence, but similar patterns are seen in both heart attack and non-heart attack groups.
--   Accumulated Risk: Heart attack occurrence increases slightly with the accumulation of 1 to 5 risk factors. However, due to small sample sizes at higher risk levels, further modeling and collection of data for risk levels 6 and above are required for more reliable insights.
+-   **Age and Heart Attack:** Adult and Middle-Age patients tend to have higher heart attack occurrences, but the weak association with age suggests that further analysis is needed to better understand its impact.
+-   **Heart Rate and Risk:** Patients with heart attacks show slightly higher heart rates, especially in older age groups. While there is a trend, more analysis is required to confirm its significance.
+-   **Risk Factors:** Smoking is the most consistent risk factor across age groups, while family history increases risk in older individuals. Risk factors appear to act independently.
+-   **Lifestyle Factors:** Physical activity, diet, and alcohol consumption are linked to heart attack occurrence, but similar patterns are seen in both heart attack and non-heart attack groups.
+-   **Accumulated Risk:** Heart attack occurrence increases slightly with the accumulation of 1 to 5 risk factors. However, due to small sample sizes at higher risk levels, further modeling and collection of data for risk levels 6 and above are required for more reliable insights.
 
 #### 3.1.6.2 Future Work
 
