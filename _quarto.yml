@@ -47,7 +47,7 @@ website:
         href: Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html
     - text: "Project"
       menu:
-      - text: "Project"
+      - text: "1. Project"
         href: Project/Project_01/Project.html
     right:
       - href: index.qmd
