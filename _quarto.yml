@@ -30,10 +30,10 @@ website:
     - text: "In-class Exercise"
       menu:
       - text: "1. Intro to Tableau"
-        href: https://public.tableau.com/views/In-class_Ex01_17371866977140/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link
+        href: In-class_Ex/In-class_Ex01/In-class_Ex01.qmd
       - text: "2. Creating Dashboards (Tableau)"
-        href: https://public.tableau.com/views/In-class_Ex02_17377894914220/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link
-      - text: "3. Creating Stories (Tableau)"
+        href: In-class_Ex/In-class_Ex02/In-class_Ex02.qmd
+      - text: "3. Crafting Stories (Tableau)"
         href: In-class_Ex/In-class_Ex03/In-class_Ex03.qmd
       - text: "4. Boxplot"
         href: In-class_Ex/In-class_Ex04/In-class_Ex04.qmd

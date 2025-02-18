@@ -277,10 +277,13 @@ check_heteroscedasticity(model1)
 
 ::: panel-tabset
 ## Code
+
 ```{r}
 check_model(model1)
 ```
+
 ## Output
+
 ```{r}
 check_model(model1)
 ```
@@ -292,10 +295,13 @@ Displays model summary and regression table with fit statistics.
 
 ::: panel-tabset
 ## Code
+
 ```{r}
 summary(model1)
 ```
+
 ## Output
+
 ```{r}
 summary(model1)
 ```
@@ -303,10 +309,13 @@ summary(model1)
 
 ::: panel-tabset
 ## Option 1
+
 ```{r}
 tbl_regression(model1, intercept = TRUE)
 ```
+
 ## Option 2
+
 ```{r}
 tbl_regression(model1, intercept = TRUE) %>%
   add_glance_source_note(
@@ -316,18 +325,19 @@ tbl_regression(model1, intercept = TRUE) %>%
 ```
 :::
 
-
 ```{r}
 p_model1 <- parameters(model1)
 ```
 
 ::: panel-tabset
 ## Option 1: ggplot
+
 ```{r}
 plot(parameters(model1))
 ```
 
 ## Option 2: ggstatsplot
+
 ```{r}
 ggcoefstats(model1,
             output = "plot")

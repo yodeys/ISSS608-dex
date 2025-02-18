@@ -1,5 +1,5 @@
 ---
-title: "In-class Exercise 04"
+title: "In-class Exercise 03: Crafting Stories (Tableau)"
 author: "Ou Yiming"
 date-modified: "last-modified"
 execute:
@@ -9,11 +9,12 @@ execute:
   freeze: true
 ---
 
-# Exploring Tableau's Functionaly
+In the second lesson, we explored further functionalities in Tableau, combined several dashboard into a story and created an interactive visualization all using the same dataset (**Superstore2020.xls**) in Lesson 1 to potray insights in a more user-friendly format.
 
+Please refer to the Public Tableau link:
 
+-   <a href="https://public.tableau.com/views/In-class_Ex02_17377894914220/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank">Dashboard </a>
 
+-   <a href="https://public.tableau.com/views/In-class_Ex02_17377894914220/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank">Story</a>
 
-# References
-
--   Prof Kam Tin Seong (2025) Class. Physical.
+-   <a href="https://public.tableau.com/views/In-class_Ex02_17377894914220/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank">Interactive Visualization</a>

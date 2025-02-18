@@ -81,6 +81,7 @@ ggplot(data = exam_data,
             binwidth = .5,
             dotsize = 2)
 ```
+
 # References
 
--   Prof Kam Tin Seong (2025) https://r4va.netlify.app/chap01. Online version
+-   Prof Kam Tin Seong (2025) Lecture 4. Physical version

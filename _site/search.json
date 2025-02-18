@@ -569,9 +569,9 @@
   {
     "objectID": "In-class_Ex/In-class_Ex02/In-class_Ex02.html",
     "href": "In-class_Ex/In-class_Ex02/In-class_Ex02.html",
-    "title": "In-class_Ex02",
+    "title": "In-class Exercise 02: Creating Dashboards (Tableau)",
     "section": "",
-    "text": "&lt;script type='text/javascript'&gt;                    var divElement = document.getElementById('viz1737790134579');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth &gt; 800 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth &gt; 500 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='100%';vizElement.style.height='1427px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                &lt;/script&gt;"
+    "text": "In the second lesson, we explored further functionalities in Tableau and created more dashboards using the same dataset (Superstore2020.xls) in Lesson 1 to perform better visualizations.\nPlease refer to the Public Tableau link: Creating Dashboards (Tableau)"
   },
   {
     "objectID": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html#age-distribution-by-heart-attack-occurrence",
@@ -621,5 +621,12 @@
     "title": "ISSS608 - Visual Analytics and Applications",
     "section": "Welcome to my Visual Analytics Journey!",
     "text": "Welcome to my Visual Analytics Journey!\nWelcome to my website for the Visual Analytics and Applications course, taught by Prof Kam Tin Seong. This website is documents my learning journey of creating data visualization, utilizing R and Tableau, throughout this course."
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex01/In-class_Ex01.html",
+    "href": "In-class_Ex/In-class_Ex01/In-class_Ex01.html",
+    "title": "In-class Exercise 01: Intro to Tableau",
+    "section": "",
+    "text": "In the first lesson, we learnt about the basic functionalities in Tableau and imported a dataset (Superstore.xls) to perform visualizations.\nPlease refer to the Public Tableau link: Introduction to Tableau"
   }
 ]
