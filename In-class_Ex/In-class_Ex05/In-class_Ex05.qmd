@@ -4,7 +4,6 @@ author: "Ou Yiming"
 date-modified: "last-modified"
 format: 
   html:
-    code-tools: true
     code-overflow: wrap
 execute:
   echo: true

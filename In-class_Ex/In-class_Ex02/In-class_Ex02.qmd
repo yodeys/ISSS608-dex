@@ -12,3 +12,5 @@ execute:
 In the second lesson, we explored further functionalities in Tableau and created more dashboards using the same dataset (**Superstore2020.xls**) in Lesson 1 to perform better visualizations.
 
 Please refer to the Public Tableau link: <a href="https://public.tableau.com/views/In-class_Ex02_17377894914220/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank">Creating Dashboards (Tableau)</a>
+
+![Creating Dashboards](/Images/Tableau 2.png){fig-align="center"}

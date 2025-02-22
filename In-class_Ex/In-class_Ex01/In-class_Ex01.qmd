@@ -12,3 +12,5 @@ execute:
 In the first lesson, we learnt about the basic functionalities in Tableau and imported a dataset (**Superstore.xls**) to perform visualizations.
 
 Please refer to the Public Tableau link: <a href="https://public.tableau.com/views/In-class_Ex01_17371866977140/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank">Introduction to Tableau</a>
+
+![Creating Visualizations](/Images/Tableau 1.png){fig-align="center"}
