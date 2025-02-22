@@ -298,7 +298,7 @@
     "href": "Hands-on_Ex/Hands-on_Ex03b.html#reference",
     "title": "Hands-on Exercise 3b: Programming Animated Statistical Graphics with R",
     "section": "Reference",
-    "text": "Reference\n\nGetting Started\nVisit this link for a very interesting implementation of gganimate by your senior.\nBuilding an animation step-by-step with gganimate.\nCreating a composite gif with multiple gganimate panels"
+    "text": "Reference\n\nProf Kam Tin Seong (2025) https://r4va.netlify.app/chap04. Online version\nGetting Started\nVisit this link for a very interesting implementation of gganimate by your senior.\nBuilding an animation step-by-step with gganimate.\nCreating a composite gif with multiple gganimate panels"
   },
   {
     "objectID": "Hands-on_Ex/Hands-on_Ex03a.html",
@@ -417,7 +417,7 @@
     "href": "Hands-on_Ex/Hands-on_Ex03a.html#references",
     "title": "Hands-on Exercise 3a: Programming Ineractive Data Visualisation with R",
     "section": "References",
-    "text": "References\n\nProf Kam Tin Seong (2025) https://r4va.netlify.app/chap03. Online version\n\n\nggiraph\nThis link provides online version of the reference guide and several useful articles. Use this link to download the pdf version of the reference guide.\n\nHow to Plot With Ggiraph\nInteractive map of France with ggiraph\nCustom interactive sunbursts with ggplot in R\nThis link provides code example on how ggiraph is used to interactive graphs for Swiss Olympians - the solo specialists.\n\n\n\nplotly for R\n\nGetting Started with Plotly in R\nA collection of plotly R graphs are available via this link.\nCarson Sievert (2020) Interactive web-based data visualization with R, plotly, and shiny, Chapman and Hall/CRC is the best resource to learn plotly for R. The online version is available via this link\nPlotly R Figure Reference provides a comprehensive discussion of each visual representations.\nPlotly R Library Fundamentals is a good place to learn the fundamental features of Plotly’s R API.\nGetting Started\nVisit this link for a very interesting implementation of gganimate by your senior.\nBuilding an animation step-by-step with gganimate.\nCreating a composite gif with multiple gganimate panels"
+    "text": "References\n\nProf Kam Tin Seong (2025) https://r4va.netlify.app/chap03. Online version :::\n\n\nggiraph\nThis link provides online version of the reference guide and several useful articles. Use this link to download the pdf version of the reference guide.\n\nHow to Plot With Ggiraph\nInteractive map of France with ggiraph\nCustom interactive sunbursts with ggplot in R\nThis link provides code example on how ggiraph is used to interactive graphs for Swiss Olympians - the solo specialists.\n\n\n\nplotly for R\n\nGetting Started with Plotly in R\nA collection of plotly R graphs are available via this link.\nCarson Sievert (2020) Interactive web-based data visualization with R, plotly, and shiny, Chapman and Hall/CRC is the best resource to learn plotly for R. The online version is available via this link\nPlotly R Figure Reference provides a comprehensive discussion of each visual representations.\nPlotly R Library Fundamentals is a good place to learn the fundamental features of Plotly’s R API.\nGetting Started\nVisit this link for a very interesting implementation of gganimate by your senior.\nBuilding an animation step-by-step with gganimate.\nCreating a composite gif with multiple gganimate panels"
   },
   {
     "objectID": "Hands-on_Ex/Hands-on_Ex02.html",
