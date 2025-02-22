@@ -1,5 +1,9 @@
 /* General Body Styling */
 body {
+    background-image: url('Images/blue_watercolor.jpg');  /* Background image */
+    background-size: cover;  /* Ensure the image covers the entire page */
+    background-position: center;
+    background-attachment: fixed;  /* Fix the background image while scrolling */
     font-family: 'Arial', sans-serif;
     background-color: #f4f8ff; /* Light blue background */
     color: #333; /* Dark gray text */

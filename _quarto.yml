@@ -13,8 +13,10 @@ website:
         text: "1. Hands-on Exercise 1"
       - href: Hands-on_Ex/Hands-on_Ex02.html
         text: "2. Hands-on Exercise 2"
+      - href: Hands-on_Ex/Hands-on_Ex03a.html
+        text: "3a. Hands-on Exercise 3"
       - href: Hands-on_Ex/Hands-on_Ex03.html
-        text: "3. Hands-on Exercise 3"
+        text: "3b. Hands-on Exercise 3b"
       - href: Hands-on_Ex/Hands-on_Ex04.html
         text: "4. Hands-on Exercise 4"
       - href: Hands-on_Ex/Hands-on_Ex05.html
