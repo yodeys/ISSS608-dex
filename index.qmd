@@ -26,8 +26,8 @@ Welcome to my website for the Visual Analytics and Applications course, taught b
 
 ------------------------------------------------------------------------
 
-:::: {.grid style="--bs-columns:3; --bs-gap : 0.5rem;"}
-::: {.g-col style="background-color: white; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"}
+:::::::::::: {.grid style="--bs-columns:3; --bs-gap : 0.5rem;"}
+::::: {.g-col style="background-color: white; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"}
 <a href="Hands-on_Ex/Hands-on_Ex01.html" style="text-decoration: none;"> <img src="Images/Hands-On_Ex_Cat.png" alt="Image 1" class="card-img-top" style="width: auto; height: auto; max-height: 200px; display: block; margin: 0 auto;"/>
 
 ::: {.g-col-body style="font-size: 0.80rem;"}
@@ -35,12 +35,15 @@ Welcome to my website for the Visual Analytics and Applications course, taught b
 
 Our objectives for this hands-on exercise: create bullet chart by using ggplot2, create sparklines by using ggplot2, and build an industry-standard dashboard using R Shiny.
 :::
+
 ::: {.g-col-footer style="font-size: 0.8rem; text-align: right; color: #6c757d;"}
 March 20, 2024
 :::
+
 </a>
-:::
-::: {.g-col style="background-color: white; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"}
+:::::
+
+::::: {.g-col style="background-color: white; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"}
 <a href="Hands-on_Ex/Hands-on_Ex02.html" style="text-decoration: none;"> <img src="Images/Hands-On_Ex_Cat.png" alt="Image 1" class="card-img-top" style="width: auto; height: auto; max-height: 200px; display: block; margin: 0 auto;"/>
 
 ::: {.g-col-body style="font-size: 0.80rem;"}
@@ -48,12 +51,15 @@ March 20, 2024
 
 Our objectives for this hands-on exercise: create bullet chart by using ggplot2, create sparklines by using ggplot2, and build an industry-standard dashboard using R Shiny.
 :::
+
 ::: {.g-col-footer style="font-size: 0.8rem; text-align: right; color: #6c757d;"}
 March 20, 2024
 :::
+
 </a>
-:::
-::: {.g-col style="background-color: white; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"}
+:::::
+
+::::: {.g-col style="background-color: white; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"}
 <a href="Hands-on_Ex/Hands-on_Ex03.html" style="text-decoration: none;"> <img src="Images/Hands-On_Ex_Cat.png" alt="Image 1" class="card-img-top" style="width: auto; height: auto; max-height: 200px; display: block; margin: 0 auto;"/>
 
 ::: {.g-col-body style="font-size: 0.80rem;"}
@@ -61,9 +67,11 @@ March 20, 2024
 
 Our objectives for this hands-on exercise: create bullet chart by using ggplot2, create sparklines by using ggplot2, and build an industry-standard dashboard using R Shiny.
 :::
+
 ::: {.g-col-footer style="font-size: 0.8rem; text-align: right; color: #6c757d;"}
 March 20, 2024
 :::
+
 </a>
-:::
-::::
+:::::
+::::::::::::
