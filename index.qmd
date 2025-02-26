@@ -28,44 +28,44 @@ Welcome to my website for the Visual Analytics and Applications course, taught b
 
 :::::::::::: {.grid style="--bs-columns:3; --bs-gap : 0.5rem;"}
 ::::: {.g-col style="background-color: white; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"}
-<a href="Hands-on_Ex/Hands-on_Ex01.html" style="text-decoration: none;"> <img src="Images/Hands-On_Ex_Cat.png" alt="Image 1" class="card-img-top" style="width: auto; height: auto; max-height: 200px; display: block; margin: 0 auto;"/>
+<a href="Hands-on_Ex/Hands-on_Ex04a.html" style="text-decoration: none;"> ![](images/clipboard-2159350538.png)
 
 ::: {.g-col-body style="font-size: 0.80rem;"}
-##### Hands-on Exercise 1: Information Dashboard Design: R methods
+##### Hands-on Exercise 4: Visualising Distribution
 
-Our objectives for this hands-on exercise: create bullet chart by using ggplot2, create sparklines by using ggplot2, and build an industry-standard dashboard using R Shiny.
+Our objectives for this hands-on exercise: create ridgeline plot and raincloud plot by using ggplot2 and its extensions
 :::
 
 ::: {.g-col-footer style="font-size: 0.8rem; text-align: right; color: #6c757d;"}
-March 20, 2024
+Feb 25, 2024
 :::
 
 </a>
 :::::
 
 ::::: {.g-col style="background-color: white; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"}
-<a href="Hands-on_Ex/Hands-on_Ex02.html" style="text-decoration: none;"> <img src="Images/Hands-On_Ex_Cat.png" alt="Image 1" class="card-img-top" style="width: auto; height: auto; max-height: 200px; display: block; margin: 0 auto;"/>
+<a href="In-class_ex/In-class_Ex05/In-class_Ex05.html" style="text-decoration: none;"> ![](images/clipboard-3474558433.png)
 
 ::: {.g-col-body style="font-size: 0.80rem;"}
-##### Hands-on Exercise 2: Information Dashboard Design: R methods
+##### In-class Exercise 5: Visual Analytics for Building Better Explanatory Models
 
-Our objectives for this hands-on exercise: create bullet chart by using ggplot2, create sparklines by using ggplot2, and build an industry-standard dashboard using R Shiny.
+Our objectives for this in-class exercise: building and checking of explanatory models.
 :::
 
 ::: {.g-col-footer style="font-size: 0.8rem; text-align: right; color: #6c757d;"}
-March 20, 2024
+Feb 22, 2024
 :::
 
 </a>
 :::::
 
 ::::: {.g-col style="background-color: white; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"}
-<a href="Hands-on_Ex/Hands-on_Ex03.html" style="text-decoration: none;"> <img src="Images/Hands-On_Ex_Cat.png" alt="Image 1" class="card-img-top" style="width: auto; height: auto; max-height: 200px; display: block; margin: 0 auto;"/>
+<a href="Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html" style="text-decoration: none;"> ![](images/clipboard-3193386965.png)
 
 ::: {.g-col-body style="font-size: 0.80rem;"}
-##### Hands-on Exercise 3: Information Dashboard Design: R methods
+##### Take-home Exercise 1: Creating data visualization beyond default
 
-Our objectives for this hands-on exercise: create bullet chart by using ggplot2, create sparklines by using ggplot2, and build an industry-standard dashboard using R Shiny.
+Utilizing appropriate EDA techniques and ggplot2 functions to examine the distribution of heart attack occurrences based on patient demographics and medical history.
 :::
 
 ::: {.g-col-footer style="font-size: 0.8rem; text-align: right; color: #6c757d;"}
