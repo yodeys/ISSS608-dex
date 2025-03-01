@@ -1,0 +1,23 @@
+---
+title: "Hands-on Exercise 6: Break"
+author: "Ou Yiming"
+date-published: "last-published"
+date-modified: "last-modified"
+execute:
+  echo: true
+  eval: true
+  warning: false
+  freeze: true
+---
+
+## Learning outcome
+
+This hands-on lesson was performed in class where **Prof Kam Tin Seong** went through the basics and mechanics of Shiny. A Shiny app with interactive features was deployed via Shinyapps.io at the end of the lesson.
+
+The Shiny app can be viewed at [Pupils Exam Result Dashboard](https://isss608-dex.shinyapps.io/In-class_Ex06/).
+
+![](images/clipboard-1075817963.png)
+
+## Reference
+
+-   Prof Kam Tin Seong (2025) Week 6 Lecture. Physical version

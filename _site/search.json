@@ -901,5 +901,26 @@
     "title": "Hands-on Exercise 4a: Visualising Distribution",
     "section": "Reference",
     "text": "Reference\n\nProf Kam Tin Seong (2025) https://r4va.netlify.app/chap09. Online version\nIntroducing Ridgeline Plots (formerly Joyplots)\nClaus O. Wilke Fundamentals of Data Visualization especially Chapter 6, 7, 8, 9 and 10.\nAllen M, Poggiali D, Whitaker K et al. “Raincloud plots: a multi-platform tool for robust data. visualization” [version 2; peer review: 2 approved]. Welcome Open Res 2021, pp. 4:63.\nDots + interval stats and geoms"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06.html",
+    "href": "Hands-on_Ex/Hands-on_Ex06.html",
+    "title": "Hands-on Exercise 6: Break",
+    "section": "",
+    "text": "This hands-on lesson was performed in class where Prof Kam Tin Seong went through the basics and mechanics of Shiny. A Shiny app with interactive features was deployed via Shinyapps.io at the end of the lesson.\nThe Shiny app can be viewed at Pupils Exam Result Dashboard."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06.html#learning-outcome",
+    "href": "Hands-on_Ex/Hands-on_Ex06.html#learning-outcome",
+    "title": "Hands-on Exercise 6: Break",
+    "section": "",
+    "text": "This hands-on lesson was performed in class where Prof Kam Tin Seong went through the basics and mechanics of Shiny. A Shiny app with interactive features was deployed via Shinyapps.io at the end of the lesson.\nThe Shiny app can be viewed at Pupils Exam Result Dashboard."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06.html#reference",
+    "href": "Hands-on_Ex/Hands-on_Ex06.html#reference",
+    "title": "Hands-on Exercise 6: Break",
+    "section": "Reference",
+    "text": "Reference\n\nProf Kam Tin Seong (2025) Week 6 Lecture. Physical version"
   }
 ]
